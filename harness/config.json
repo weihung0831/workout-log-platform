@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "qualityThresholds": {
+    "productDepth": 4,
+    "functionality": 4,
+    "visualDesign": 3,
+    "codeQuality": 4,
+    "maintainability": 4,
+    "reliability": 4
+  },
+  "verificationCommands": [
+    "npm run harness:check",
+    "npm run lint",
+    "npm run build"
+  ],
+  "requiredPaths": [
+    "AGENTS.md",
+    "docs/harness/README.md",
+    "docs/harness/ARCHITECTURE.md",
+    "docs/harness/PRODUCT.md",
+    "docs/harness/QUALITY.md",
+    "docs/harness/RELIABILITY.md",
+    "docs/harness/PLANS.md",
+    "docs/harness/DECISIONS.md",
+    "docs/harness/product-specs/index.md",
+    "docs/harness/product-specs/workout-logging-mvp.md",
+    "docs/harness/exec-plans/active",
+    "docs/harness/exec-plans/completed",
+    "harness/prompts/planner.md",
+    "harness/prompts/generator.md",
+    "harness/prompts/evaluator.md",
+    "harness/templates/exec-plan.md",
+    "harness/templates/sprint-contract.md",
+    "harness/templates/qa-report.md",
+    "harness/templates/handoff.md",
+    "scripts/harness.mjs"
+  ],
+  "requiredMarkdownSections": {
+    "AGENTS.md": [
+      "## 運作循環",
+      "## 知識地圖",
+      "## 必要檢查",
+      "## 語言規則",
+      "## 邊界"
+    ],
+    "docs/harness/README.md": [
+      "## 工作流程",
+      "## 工件結構",
+      "## 命令",
+      "## 何時使用完整循環"
+    ],
+    "docs/harness/QUALITY.md": [
+      "## 評估標準",
+      "## 硬性門檻",
+      "## 評估方法",
+      "## 評分規則"
+    ],
+    "docs/harness/RELIABILITY.md": [
+      "## 必要命令",
+      "## 驗證階梯",
+      "## 失敗處理流程"
+    ],
+    "docs/harness/PLANS.md": [
+      "## 位置",
+      "## 生命週期",
+      "## Active Plan 必要章節",
+      "## 輕量計畫"
+    ]
+  },
+  "activePlanRequiredSections": [
+    "## 狀態",
+    "## 負責者",
+    "## 最後更新",
+    "## 目標",
+    "## 驗收條件",
+    "## 工作切片",
+    "## 決策",
+    "## 驗證",
+    "## Handoff"
+  ],
+  "rules": {
+    "maxSourceLines": 450,
+    "sourceGlobs": [
+      "src",
+      "scripts",
+      "harness"
+    ],
+    "ignoredDirs": [
+      "node_modules",
+      ".next",
+      ".git",
+      "out",
+      "build",
+      "dist"
+    ]
+  }
+}

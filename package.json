@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "harness": "node scripts/harness.mjs",
+    "harness:init": "node scripts/harness.mjs init",
+    "harness:check": "node scripts/harness.mjs check",
+    "harness:status": "node scripts/harness.mjs status"
   },
   "dependencies": {
     "next": "latest",
