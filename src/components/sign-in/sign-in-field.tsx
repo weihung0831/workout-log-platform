@@ -54,7 +54,7 @@ export function SignInField({
               src={trailingIconSrc}
               alt=""
               width={18}
-              height={18}
+              height={13}
             />
           </button>
         ) : null}
