@@ -136,11 +136,26 @@
 .sign-in-input-icon {
   position: absolute;
   top: 50%;
-  left: 13px;
+  left: 22px;
   width: 18px;
   height: 18px;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   pointer-events: none;
+}
+
+.sign-in-input-icon--email {
+  width: 16.5px;
+  height: 13.5px;
+}
+
+.sign-in-input-icon--password {
+  width: 15px;
+  height: 16.5px;
+}
+
+.sign-in-input-wrap--error .sign-in-input-icon {
+  filter: brightness(0) saturate(100%) invert(39%) sepia(96%)
+    saturate(3035%) hue-rotate(340deg) brightness(102%) contrast(103%);
 }
 
 .sign-in-icon-button {

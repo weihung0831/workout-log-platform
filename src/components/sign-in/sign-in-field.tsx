@@ -39,10 +39,16 @@ export function SignInField({
       >
         {label}
       </label>
-      <div className="sign-in-input-wrap">
+      <div
+        className={
+          errorMessage
+            ? "sign-in-input-wrap sign-in-input-wrap--error"
+            : "sign-in-input-wrap"
+        }
+      >
         <Image
           aria-hidden
-          className="sign-in-input-icon"
+          className={`sign-in-input-icon sign-in-input-icon--${id}`}
           src={iconSrc}
           alt=""
           width={18}
