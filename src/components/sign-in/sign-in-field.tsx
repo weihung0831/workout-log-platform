@@ -7,6 +7,8 @@ type SignInFieldProps = {
   placeholder: string;
   iconSrc: string;
   autoComplete: string;
+  errorMessage?: string;
+  onChange?: () => void;
   trailingIconSrc?: string;
   trailingLabel?: string;
 };
@@ -18,12 +20,23 @@ export function SignInField({
   placeholder,
   iconSrc,
   autoComplete,
+  errorMessage,
+  onChange,
   trailingIconSrc,
   trailingLabel,
 }: SignInFieldProps) {
+  const errorId = errorMessage ? `${id}-error` : undefined;
+
   return (
     <div className="sign-in-field">
-      <label className="sign-in-label" htmlFor={id}>
+      <label
+        className={
+          errorMessage
+            ? "sign-in-label sign-in-label--error"
+            : "sign-in-label"
+        }
+        htmlFor={id}
+      >
         {label}
       </label>
       <div className="sign-in-input-wrap">
@@ -36,9 +49,14 @@ export function SignInField({
           height={18}
         />
         <input
-          className="sign-in-input"
+          aria-describedby={errorId}
+          aria-invalid={errorMessage ? "true" : undefined}
+          className={
+            errorMessage ? "sign-in-input sign-in-input--error" : "sign-in-input"
+          }
           id={id}
           name={id}
+          onChange={onChange}
           type={type}
           placeholder={placeholder}
           autoComplete={autoComplete}
@@ -59,6 +77,12 @@ export function SignInField({
           </button>
         ) : null}
       </div>
+      {errorMessage ? (
+        <p className="sign-in-error" id={errorId}>
+          <span aria-hidden className="sign-in-error-icon" />
+          {errorMessage}
+        </p>
+      ) : null}
     </div>
   );
 }

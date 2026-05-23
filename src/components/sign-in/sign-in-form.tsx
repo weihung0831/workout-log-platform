@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,8 +9,16 @@ import { SignInField } from "./sign-in-field";
 import { SignInIntro } from "./sign-in-intro";
 
 export function SignInForm() {
+  const [hasPasswordError, setHasPasswordError] = useState(false);
+
   return (
-    <form className="sign-in-form">
+    <form
+      className="sign-in-form"
+      onSubmit={(event) => {
+        event.preventDefault();
+        setHasPasswordError(true);
+      }}
+    >
       <SignInIntro desktop />
       <div className="sign-in-fields">
         <SignInField
@@ -26,6 +37,10 @@ export function SignInForm() {
             placeholder="輸入密碼"
             iconSrc={signInAssets.lock}
             autoComplete="current-password"
+            errorMessage={
+              hasPasswordError ? "密碼錯誤，請重新輸入" : undefined
+            }
+            onChange={() => setHasPasswordError(false)}
             trailingIconSrc={signInAssets.eye}
             trailingLabel="顯示密碼"
           />

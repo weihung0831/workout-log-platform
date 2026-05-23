@@ -75,7 +75,7 @@
 
 .sign-in-password-group {
   display: grid;
-  gap: 6px;
+  gap: 8px;
 }
 
 .sign-in-field {
@@ -88,6 +88,10 @@
   font-size: 13px;
   font-weight: 700;
   line-height: 18px;
+}
+
+.sign-in-label--error {
+  color: #ff3b30;
 }
 
 .sign-in-input-wrap {
@@ -119,6 +123,16 @@
   box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.12);
 }
 
+.sign-in-input--error {
+  border-color: #ff3b30;
+  background: #fff1ef;
+}
+
+.sign-in-input--error:focus {
+  border-color: #ff3b30;
+  box-shadow: 0 0 0 4px rgba(255, 59, 48, 0.12);
+}
+
 .sign-in-input-icon {
   position: absolute;
   top: 50%;
@@ -143,6 +157,33 @@
   cursor: pointer;
   padding: 0;
   transform: translateY(-50%);
+}
+
+.sign-in-error {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 4px 0 0;
+  color: #ff3b30;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+}
+
+.sign-in-error-icon {
+  display: inline-grid;
+  width: 13px;
+  height: 13px;
+  place-items: center;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.sign-in-error-icon::before {
+  content: "!";
 }
 
 .sign-in-icon-button:focus-visible,
