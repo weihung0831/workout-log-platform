@@ -107,7 +107,15 @@ function checkActivePlans(config, errors) {
 function checkSourceLineLimits(config, errors) {
   const ignoredDirs = config.rules.ignoredDirs ?? [];
   const maxLines = config.rules.maxSourceLines;
-  const extensions = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs"]);
+  const sourceExtensions = config.rules.sourceExtensions ?? [
+    ".ts",
+    ".tsx",
+    ".js",
+    ".jsx",
+    ".mjs",
+    ".cjs",
+  ];
+  const extensions = new Set(sourceExtensions);
 
   for (const sourceRoot of config.rules.sourceGlobs) {
     const sourcePath = path.join(root, sourceRoot);

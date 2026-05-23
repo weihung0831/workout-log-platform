@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--neutral-surface);
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: var(--neutral-surface);
+  color: var(--neutral-t1);
+  font-family: var(--font-app-sans);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  html,
+  body {
+    background: var(--neutral-bg);
+  }
+}

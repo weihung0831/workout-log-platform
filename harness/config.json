@@ -80,6 +80,15 @@
   ],
   "rules": {
     "maxSourceLines": 450,
+    "sourceExtensions": [
+      ".ts",
+      ".tsx",
+      ".js",
+      ".jsx",
+      ".mjs",
+      ".cjs",
+      ".css"
+    ],
     "sourceGlobs": [
       "src",
       "scripts",

@@ -1,0 +1,22 @@
+:root {
+  --brand-orange: #ff6b35;
+  --brand-orange-100: #fff0eb;
+  --brand-orange-dark: #e85520;
+  --neutral-bg: #f5f5f5;
+  --neutral-surface: #ffffff;
+  --neutral-border: #e5e5ea;
+  --neutral-t1: #1c1c1e;
+  --neutral-t2: #8e8e93;
+  --neutral-t3: #c7c7cc;
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --font-app-sans: Inter, "Noto Sans TC", "Noto Sans JP", "PingFang TC",
+    "Microsoft JhengHei", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-app-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+@theme inline {
+  --color-background: var(--neutral-surface);
+  --color-foreground: var(--neutral-t1);
+  --font-sans: var(--font-app-sans);
+  --font-mono: var(--font-app-mono);
+}
