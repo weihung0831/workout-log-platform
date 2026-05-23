@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W2250 Design System Preview</title>
+  <style>
+    :root {
+      --brand-orange: #ff6b35;
+      --brand-orange-100: #fff0eb;
+      --brand-orange-dark: #e85520;
+
+      --muscle-chest: #ff6b35;
+      --muscle-back: #4ecdc4;
+      --muscle-shoulder: #45b7d1;
+      --muscle-arm: #96ceb4;
+      --muscle-core: #f9ca24;
+      --muscle-glutes: #dda0dd;
+      --muscle-thigh: #f08080;
+      --muscle-calf: #87ceeb;
+
+      --semantic-success: #34c759;
+      --semantic-danger: #ff3b30;
+      --semantic-danger-100: #fff0f0;
+      --semantic-warning: #ff9f0a;
+      --semantic-info: #0a84ff;
+
+      --neutral-bg: #f5f5f5;
+      --neutral-surface: #ffffff;
+      --neutral-sidebar: #fafafa;
+      --neutral-border: #e5e5ea;
+      --neutral-t1: #1c1c1e;
+      --neutral-t2: #8e8e93;
+      --neutral-t3: #c7c7cc;
+      --neutral-t2-light: #888888;
+
+      --overlay-white-05: rgba(255, 255, 255, .05);
+      --overlay-white-08: rgba(255, 255, 255, .08);
+      --overlay-black-48: rgba(0, 0, 0, .48);
+
+      --text-display: 28px;
+      --text-h1: 22px;
+      --text-h2: 18px;
+      --text-h3: 15px;
+      --text-body: 14px;
+      --text-body-sm: 12px;
+      --text-caption: 11px;
+      --text-micro: 10px;
+
+      --r-xs: 6px;
+      --r-sm: 8px;
+      --r-md: 12px;
+      --r-lg: 16px;
+      --r-xl: 20px;
+      --r-2xl: 28px;
+      --r-10: 10px;
+      --r-18: 18px;
+      --r-pill: 9999px;
+
+      --shadow-sm: 0 1px 4px rgba(0, 0, 0, .06);
+      --shadow-md: 0 2px 12px rgba(0, 0, 0, .08);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, .12);
+      --glow-orange: 0 4px 16px rgba(255, 107, 53, .35);
+      --shadow-modal-sm: 0 16px 40px rgba(0, 0, 0, .4);
+      --shadow-modal-md: 0 20px 50px rgba(0, 0, 0, .5);
+      --shadow-modal-lg: 0 24px 60px rgba(0, 0, 0, .6);
+
+      --space-4: 4px;
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-24: 24px;
+      --space-28: 28px;
+      --space-32: 32px;
+      --space-64: 64px;
+      --space-80: 80px;
+      --space-96: 96px;
+    }
+
+    @media (min-width: 768px) {
+      :root {
+        --text-h3: 16px;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: #18181b;
+      color: #fff;
+      font-family: Inter, "Noto Sans TC", "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, 0) 360px),
+        #18181b;
+      color: #fff;
+    }
+
+    .page {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      padding: var(--space-64);
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-80);
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.12;
+    }
+
+    .subtitle {
+      color: #99999e;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-32);
+    }
+
+    .section-title {
+      color: #fff;
+      font-size: var(--text-display);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+    }
+
+    .group-title {
+      color: var(--brand-orange);
+      font-size: var(--text-h3);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+      gap: var(--space-12);
+      align-items: start;
+    }
+
+    .swatch-card,
+    .radius-card,
+    .effect-card {
+      min-width: 0;
+    }
+
+    .swatch {
+      height: 80px;
+      border: 1px solid #333336;
+      border-radius: var(--r-sm);
+      background: var(--color);
+    }
+
+    .swatch.checker {
+      background:
+        linear-gradient(45deg, #2a2a2f 25%, transparent 25%),
+        linear-gradient(-45deg, #2a2a2f 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #2a2a2f 75%),
+        linear-gradient(-45deg, transparent 75%, #2a2a2f 75%),
+        #1f1f23;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+      background-size: 16px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swatch.checker::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--color);
+    }
+
+    .token-name {
+      margin-top: var(--space-8);
+      color: #e5e5eb;
+      font-size: var(--text-body-sm);
+      font-weight: 700;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .token-value {
+      margin-top: var(--space-4);
+      color: #80808c;
+      font-size: var(--text-micro);
+      font-weight: 400;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+
+    .typography-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-28);
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: var(--space-24);
+      align-items: center;
+    }
+
+    .type-meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      min-width: 0;
+    }
+
+    .type-label {
+      color: var(--brand-orange);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .type-detail {
+      color: #80808c;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .sample {
+      min-width: 0;
+      color: #fff;
+      overflow-wrap: anywhere;
+    }
+
+    .display {
+      font-size: var(--text-display);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .h1 {
+      font-size: var(--text-h1);
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .h2 {
+      font-size: var(--text-h2);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .h3 {
+      font-size: var(--text-h3);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .body {
+      font-size: var(--text-body);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .body-sm {
+      font-size: var(--text-body-sm);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .caption {
+      font-size: var(--text-caption);
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .micro {
+      font-size: var(--text-micro);
+      font-weight: 500;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .radius-grid,
+    .effect-grid,
+    .spacing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: var(--space-16);
+      align-items: start;
+    }
+
+    .radius-sample {
+      width: min(120px, 100%);
+      height: 80px;
+      margin: 0 auto;
+      background: var(--brand-orange);
+      border-radius: var(--radius);
+    }
+
+    .radius-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .effect-grid {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      row-gap: var(--space-32);
+    }
+
+    .effect-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-12);
+      text-align: center;
+    }
+
+    .effect-sample {
+      width: 160px;
+      max-width: 100%;
+      height: 100px;
+      border-radius: var(--r-md);
+      background: var(--neutral-surface);
+      box-shadow: var(--effect);
+    }
+
+    .spacing-grid {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .spacing-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+      min-width: 0;
+    }
+
+    .spacing-bar {
+      width: var(--size);
+      max-width: 100%;
+      height: 12px;
+      border-radius: var(--r-pill);
+      background: var(--brand-orange);
+      box-shadow: var(--glow-orange);
+    }
+
+    .footer {
+      border-top: 1px solid var(--overlay-white-08);
+      padding-top: var(--space-32);
+      color: #666673;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        padding: 32px 20px;
+      }
+
+      .stack {
+        gap: 48px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-12);
+        padding-bottom: var(--space-16);
+        border-bottom: 1px solid var(--overlay-white-08);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="stack">
+      <header class="header">
+        <h1>W2250 — Design System</h1>
+        <p class="subtitle">健身管理紀錄平台 設計規範 · Tokens · Typography · Effects · Spacing</p>
+      </header>
+
+      <section class="section" aria-labelledby="colors-title">
+        <h2 class="section-title" id="colors-title">Colors</h2>
+
+        <div class="group">
+          <h3 class="group-title">Brand</h3>
+          <div class="swatch-grid">
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--brand-orange)"></div>
+              <p class="token-name">Brand/orange</p>
+              <p class="token-value">#FF6B35</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--brand-orange-100)"></div>
+              <p class="token-name">Brand/orange-100</p>
+              <p class="token-value">#FFF0EB</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--brand-orange-dark)"></div>
+              <p class="token-name">Brand/orange-dark</p>
+              <p class="token-value">#E85520</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3 class="group-title">Muscle Groups</h3>
+          <div class="swatch-grid">
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--muscle-chest)"></div>
+              <p class="token-name">Muscle/chest</p>
+              <p class="token-value">#FF6B35</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--muscle-back)"></div>
+              <p class="token-name">Muscle/back</p>
+              <p class="token-value">#4ECDC4</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--muscle-shoulder)"></div>
+              <p class="token-name">Muscle/shoulder</p>
+              <p class="token-value">#45B7D1</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--muscle-arm)"></div>
+              <p class="token-name">Muscle/arm</p>
+              <p class="token-value">#96CEB4</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--muscle-core)"></div>
+              <p class="token-name">Muscle/core</p>
+              <p class="token-value">#F9CA24</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--muscle-glutes)"></div>
+              <p class="token-name">Muscle/glutes</p>
+              <p class="token-value">#DDA0DD</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--muscle-thigh)"></div>
+              <p class="token-name">Muscle/thigh</p>
+              <p class="token-value">#F08080</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--muscle-calf)"></div>
+              <p class="token-name">Muscle/calf</p>
+              <p class="token-value">#87CEEB</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3 class="group-title">Semantic</h3>
+          <div class="swatch-grid">
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--semantic-success)"></div>
+              <p class="token-name">Semantic/success</p>
+              <p class="token-value">#34C759</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--semantic-danger)"></div>
+              <p class="token-name">Semantic/danger</p>
+              <p class="token-value">#FF3B30</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--semantic-danger-100)"></div>
+              <p class="token-name">Semantic/danger-100</p>
+              <p class="token-value">#FFF0F0</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--semantic-warning)"></div>
+              <p class="token-name">Semantic/warning</p>
+              <p class="token-value">#FF9F0A</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--semantic-info)"></div>
+              <p class="token-name">Semantic/info</p>
+              <p class="token-value">#0A84FF</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3 class="group-title">Neutral</h3>
+          <div class="swatch-grid">
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--neutral-bg)"></div>
+              <p class="token-name">Neutral/bg</p>
+              <p class="token-value">#F5F5F5</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--neutral-surface)"></div>
+              <p class="token-name">Neutral/surface</p>
+              <p class="token-value">#FFFFFF</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--neutral-sidebar)"></div>
+              <p class="token-name">Neutral/sidebar</p>
+              <p class="token-value">#FAFAFA</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--neutral-border)"></div>
+              <p class="token-name">Neutral/border</p>
+              <p class="token-value">#E5E5EA</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--neutral-t1)"></div>
+              <p class="token-name">Neutral/t1</p>
+              <p class="token-value">#1C1C1E</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--neutral-t2)"></div>
+              <p class="token-name">Neutral/t2</p>
+              <p class="token-value">#8E8E93</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--neutral-t3)"></div>
+              <p class="token-name">Neutral/t3</p>
+              <p class="token-value">#C7C7CC</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch" style="--color: var(--neutral-t2-light)"></div>
+              <p class="token-name">Neutral/t2-light</p>
+              <p class="token-value">#888888</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3 class="group-title">Overlay</h3>
+          <div class="swatch-grid">
+            <article class="swatch-card">
+              <div class="swatch checker" style="--color: var(--overlay-white-05)"></div>
+              <p class="token-name">Overlay/white-05</p>
+              <p class="token-value">rgba(255,255,255,.05)</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch checker" style="--color: var(--overlay-white-08)"></div>
+              <p class="token-name">Overlay/white-08</p>
+              <p class="token-value">rgba(255,255,255,.08)</p>
+            </article>
+            <article class="swatch-card">
+              <div class="swatch checker" style="--color: var(--overlay-black-48)"></div>
+              <p class="token-name">Overlay/black-48</p>
+              <p class="token-value">rgba(0,0,0,.48)</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="type-title">
+        <div class="group">
+          <h2 class="section-title" id="type-title">Typography</h2>
+          <p class="subtitle">8 個 text styles 綁定 Typography variable，自動依 Mobile / Tablet / Desktop mode 切換字級</p>
+        </div>
+
+        <div class="typography-list">
+          <article class="type-row">
+            <div class="type-meta">
+              <p class="type-label">Display</p>
+              <p class="type-detail">Extra Bold · 28/28/28 · 1.2</p>
+            </div>
+            <p class="sample display">健身管理</p>
+          </article>
+          <article class="type-row">
+            <div class="type-meta">
+              <p class="type-label">Heading 1</p>
+              <p class="type-detail">Extra Bold · 22/22/22 · 1.25</p>
+            </div>
+            <p class="sample h1">今天的訓練</p>
+          </article>
+          <article class="type-row">
+            <div class="type-meta">
+              <p class="type-label">Heading 2</p>
+              <p class="type-detail">Bold · 18/18/18 · 1.3</p>
+            </div>
+            <p class="sample h2">上胸大肌</p>
+          </article>
+          <article class="type-row">
+            <div class="type-meta">
+              <p class="type-label">Heading 3</p>
+              <p class="type-detail">Bold · 15/16/16 · 1.35</p>
+            </div>
+            <p class="sample h3">完成這組</p>
+          </article>
+          <article class="type-row">
+            <div class="type-meta">
+              <p class="type-label">Body</p>
+              <p class="type-detail">Medium · 14/14/14 · 1.5</p>
+            </div>
+            <p class="sample body">輸入重量與次數，紀錄每一組訓練</p>
+          </article>
+          <article class="type-row">
+            <div class="type-meta">
+              <p class="type-label">Body Small</p>
+              <p class="type-detail">Regular · 12/12/12 · 1.5</p>
+            </div>
+            <p class="sample body-sm">休息結束將自動進入下一組</p>
+          </article>
+          <article class="type-row">
+            <div class="type-meta">
+              <p class="type-label">Caption</p>
+              <p class="type-detail">Regular · 11/11/11 · 1.4</p>
+            </div>
+            <p class="sample caption">Caption · 輔助說明文字</p>
+          </article>
+          <article class="type-row">
+            <div class="type-meta">
+              <p class="type-label">Micro</p>
+              <p class="type-detail">Medium · 10/10/10 · 1.4</p>
+            </div>
+            <p class="sample micro">MICRO · 標籤與小字</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="radius-title">
+        <h2 class="section-title" id="radius-title">Radius</h2>
+        <div class="radius-grid">
+          <article class="radius-card">
+            <div class="radius-sample" style="--radius: var(--r-xs)"></div>
+            <p class="token-name">r-xs</p>
+            <p class="token-value">6px</p>
+          </article>
+          <article class="radius-card">
+            <div class="radius-sample" style="--radius: var(--r-sm)"></div>
+            <p class="token-name">r-sm</p>
+            <p class="token-value">8px</p>
+          </article>
+          <article class="radius-card">
+            <div class="radius-sample" style="--radius: var(--r-md)"></div>
+            <p class="token-name">r-md</p>
+            <p class="token-value">12px</p>
+          </article>
+          <article class="radius-card">
+            <div class="radius-sample" style="--radius: var(--r-lg)"></div>
+            <p class="token-name">r-lg</p>
+            <p class="token-value">16px</p>
+          </article>
+          <article class="radius-card">
+            <div class="radius-sample" style="--radius: var(--r-xl)"></div>
+            <p class="token-name">r-xl</p>
+            <p class="token-value">20px</p>
+          </article>
+          <article class="radius-card">
+            <div class="radius-sample" style="--radius: var(--r-2xl)"></div>
+            <p class="token-name">r-2xl</p>
+            <p class="token-value">28px</p>
+          </article>
+          <article class="radius-card">
+            <div class="radius-sample" style="--radius: var(--r-10)"></div>
+            <p class="token-name">r-10</p>
+            <p class="token-value">10px</p>
+          </article>
+          <article class="radius-card">
+            <div class="radius-sample" style="--radius: var(--r-18)"></div>
+            <p class="token-name">r-18</p>
+            <p class="token-value">18px</p>
+          </article>
+          <article class="radius-card">
+            <div class="radius-sample" style="--radius: var(--r-pill)"></div>
+            <p class="token-name">r-pill</p>
+            <p class="token-value">pill / circle</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="effects-title">
+        <h2 class="section-title" id="effects-title">Shadows / Effects</h2>
+        <div class="effect-grid">
+          <article class="effect-card">
+            <div class="effect-sample" style="--effect: var(--shadow-sm)"></div>
+            <div>
+              <p class="token-name">shadow-sm</p>
+              <p class="token-value">Card subtle lift</p>
+            </div>
+          </article>
+          <article class="effect-card">
+            <div class="effect-sample" style="--effect: var(--shadow-md)"></div>
+            <div>
+              <p class="token-name">shadow-md</p>
+              <p class="token-value">Card medium lift</p>
+            </div>
+          </article>
+          <article class="effect-card">
+            <div class="effect-sample" style="--effect: var(--shadow-lg)"></div>
+            <div>
+              <p class="token-name">shadow-lg</p>
+              <p class="token-value">Card large lift</p>
+            </div>
+          </article>
+          <article class="effect-card">
+            <div class="effect-sample" style="--effect: var(--glow-orange)"></div>
+            <div>
+              <p class="token-name">glow-orange</p>
+              <p class="token-value">CTA button glow</p>
+            </div>
+          </article>
+          <article class="effect-card">
+            <div class="effect-sample" style="--effect: var(--shadow-modal-sm)"></div>
+            <div>
+              <p class="token-name">shadow-modal-sm</p>
+              <p class="token-value">Modal small</p>
+            </div>
+          </article>
+          <article class="effect-card">
+            <div class="effect-sample" style="--effect: var(--shadow-modal-md)"></div>
+            <div>
+              <p class="token-name">shadow-modal-md</p>
+              <p class="token-value">Modal medium</p>
+            </div>
+          </article>
+          <article class="effect-card">
+            <div class="effect-sample" style="--effect: var(--shadow-modal-lg)"></div>
+            <div>
+              <p class="token-name">shadow-modal-lg</p>
+              <p class="token-value">Modal large</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="spacing-title">
+        <h2 class="section-title" id="spacing-title">Spacing</h2>
+        <div class="spacing-grid">
+          <article class="spacing-card">
+            <div class="spacing-bar" style="--size: var(--space-4)"></div>
+            <p class="token-name">space-4</p>
+            <p class="token-value">4px</p>
+          </article>
+          <article class="spacing-card">
+            <div class="spacing-bar" style="--size: var(--space-8)"></div>
+            <p class="token-name">space-8</p>
+            <p class="token-value">8px</p>
+          </article>
+          <article class="spacing-card">
+            <div class="spacing-bar" style="--size: var(--space-12)"></div>
+            <p class="token-name">space-12</p>
+            <p class="token-value">12px</p>
+          </article>
+          <article class="spacing-card">
+            <div class="spacing-bar" style="--size: var(--space-16)"></div>
+            <p class="token-name">space-16</p>
+            <p class="token-value">16px</p>
+          </article>
+          <article class="spacing-card">
+            <div class="spacing-bar" style="--size: var(--space-24)"></div>
+            <p class="token-name">space-24</p>
+            <p class="token-value">24px</p>
+          </article>
+          <article class="spacing-card">
+            <div class="spacing-bar" style="--size: var(--space-28)"></div>
+            <p class="token-name">space-28</p>
+            <p class="token-value">28px</p>
+          </article>
+          <article class="spacing-card">
+            <div class="spacing-bar" style="--size: var(--space-32)"></div>
+            <p class="token-name">space-32</p>
+            <p class="token-value">32px</p>
+          </article>
+          <article class="spacing-card">
+            <div class="spacing-bar" style="--size: var(--space-64)"></div>
+            <p class="token-name">space-64</p>
+            <p class="token-value">64px</p>
+          </article>
+          <article class="spacing-card">
+            <div class="spacing-bar" style="--size: var(--space-80)"></div>
+            <p class="token-name">space-80</p>
+            <p class="token-value">80px</p>
+          </article>
+          <article class="spacing-card">
+            <div class="spacing-bar" style="--size: var(--space-96)"></div>
+            <p class="token-name">space-96</p>
+            <p class="token-value">96px</p>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Variable Collections: Color (27) · Radius (9) · Typography (8 × 3 modes) · Spacing derived from inspected layout · Text Styles (8) · Effect Styles (7)</p>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>
