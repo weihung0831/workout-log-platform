@@ -61,7 +61,7 @@ export function SignInForm() {
       </button>
       <p className="sign-in-register">
         還沒有帳號？
-        <a href="#">立即註冊</a>
+        <Link href="/sign-up">立即註冊</Link>
       </p>
     </form>
   );

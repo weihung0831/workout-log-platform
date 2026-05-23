@@ -1,4 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { signUpAssets } from "./sign-up-assets";
 import { SignUpField } from "./sign-up-field";
@@ -16,8 +20,16 @@ function PasswordStrength() {
 }
 
 export function SignUpForm() {
+  const [hasEmailError, setHasEmailError] = useState(false);
+
   return (
-    <form className="sign-up-form">
+    <form
+      className="sign-up-form"
+      onSubmit={(event) => {
+        event.preventDefault();
+        setHasEmailError(true);
+      }}
+    >
       <SignUpIntro desktop />
       <div className="sign-up-fields">
         <SignUpField
@@ -35,6 +47,10 @@ export function SignUpForm() {
           label="電子信箱"
           placeholder="you@example.com"
           type="email"
+          errorActionHref="/"
+          errorActionLabel="直接登入"
+          errorMessage={hasEmailError ? "此信箱已被註冊，請" : undefined}
+          onChange={() => setHasEmailError(false)}
         />
         <div className="sign-up-password-group">
           <SignUpField
@@ -56,7 +72,14 @@ export function SignUpForm() {
           type="password"
         />
       </div>
-      <button className="sign-up-primary" type="submit">
+      <button
+        className={
+          hasEmailError
+            ? "sign-up-primary sign-up-primary--muted"
+            : "sign-up-primary"
+        }
+        type="submit"
+      >
         建立帳號
       </button>
       <div className="sign-up-divider">
@@ -68,7 +91,7 @@ export function SignUpForm() {
       </button>
       <p className="sign-up-login">
         已有帳號？
-        <a href="#">登入</a>
+        <Link href="/">登入</Link>
       </p>
     </form>
   );

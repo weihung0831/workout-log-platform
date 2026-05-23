@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type SignUpFieldProps = {
   id: string;
@@ -6,8 +7,12 @@ type SignUpFieldProps = {
   type: "email" | "password" | "text";
   placeholder: string;
   autoComplete: string;
+  errorActionHref?: string;
+  errorActionLabel?: string;
+  errorMessage?: string;
   iconSrc?: string;
   iconType?: "user";
+  onChange?: () => void;
 };
 
 function UserIcon() {
@@ -41,21 +46,37 @@ export function SignUpField({
   type,
   placeholder,
   autoComplete,
+  errorActionHref,
+  errorActionLabel,
+  errorMessage,
   iconSrc,
   iconType,
+  onChange,
 }: SignUpFieldProps) {
   const hasIcon = Boolean(iconSrc || iconType);
+  const errorId = errorMessage ? `${id}-error` : undefined;
 
   return (
     <div className="sign-up-field">
-      <label className="sign-up-label" htmlFor={id}>
+      <label
+        className={
+          errorMessage
+            ? "sign-up-label sign-up-label--error"
+            : "sign-up-label"
+        }
+        htmlFor={id}
+      >
         {label}
       </label>
       <div
         className={
-          hasIcon
-            ? "sign-up-input-wrap sign-up-input-wrap--with-icon"
-            : "sign-up-input-wrap"
+          [
+            "sign-up-input-wrap",
+            hasIcon ? "sign-up-input-wrap--with-icon" : "",
+            errorMessage ? "sign-up-input-wrap--error" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")
         }
       >
         {iconType === "user" ? <UserIcon /> : null}
@@ -63,21 +84,40 @@ export function SignUpField({
           <Image
             aria-hidden
             alt=""
-            className="sign-up-input-icon"
+            className={`sign-up-input-icon sign-up-input-icon--${id}`}
             height={18}
             src={iconSrc}
             width={18}
           />
         ) : null}
+        {errorMessage ? (
+          <span aria-hidden className="sign-up-input-error-mark" />
+        ) : null}
         <input
+          aria-describedby={errorId}
+          aria-invalid={errorMessage ? "true" : undefined}
           autoComplete={autoComplete}
-          className="sign-up-input"
+          className={
+            errorMessage ? "sign-up-input sign-up-input--error" : "sign-up-input"
+          }
           id={id}
           name={id}
+          onChange={onChange}
           placeholder={placeholder}
           type={type}
         />
       </div>
+      {errorMessage ? (
+        <p className="sign-up-error" id={errorId}>
+          <span aria-hidden className="sign-up-error-icon" />
+          {errorMessage}
+          {errorActionHref && errorActionLabel ? (
+            <Link className="sign-up-error-link" href={errorActionHref}>
+              {errorActionLabel}
+            </Link>
+          ) : null}
+        </p>
+      ) : null}
     </div>
   );
 }
