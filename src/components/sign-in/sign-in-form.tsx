@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { signInAssets } from "./sign-in-assets";
 import { SignInField } from "./sign-in-field";
@@ -28,9 +29,9 @@ export function SignInForm() {
             trailingIconSrc={signInAssets.eye}
             trailingLabel="顯示密碼"
           />
-          <a className="sign-in-forgot" href="#">
+          <Link className="sign-in-forgot" href="/forgot-password">
             忘記密碼？
-          </a>
+          </Link>
         </div>
       </div>
       <button className="sign-in-primary" type="submit">
