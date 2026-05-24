@@ -71,6 +71,11 @@
   gap: 16px;
 }
 
+.home-recent {
+  display: grid;
+  gap: 12px;
+}
+
 .home-today-card {
   position: relative;
   overflow: hidden;
