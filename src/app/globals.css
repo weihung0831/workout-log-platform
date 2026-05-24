@@ -7,3 +7,5 @@
 @import "../components/email-verify/email-verify.css";
 @import "../components/forgot-password/forgot-password.css";
 @import "../components/reset-password/reset-password.css";
+@import "../components/home/home.css";
+@import "../components/home/home-responsive.css";

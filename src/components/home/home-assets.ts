@@ -1,0 +1,18 @@
+export const homeAssets = {
+  logo: "/assets/figma/home/images/Image (FitLog).png",
+  navHomeActive: "/assets/figma/home/icons/Icon-10.svg",
+  navHomeActiveSmall: "/assets/figma/home/icons/Icon-5.svg",
+  navRecord: "/assets/figma/home/icons/Icon-9.svg",
+  navRecordSmall: "/assets/figma/home/icons/Icon-4.svg",
+  navJournal: "/assets/figma/home/icons/Icon-8.svg",
+  navJournalSmall: "/assets/figma/home/icons/Icon-3.svg",
+  navStats: "/assets/figma/home/icons/Icon-7.svg",
+  navStatsSmall: "/assets/figma/home/icons/Icon-2.svg",
+  navProfile: "/assets/figma/home/icons/Icon-6.svg",
+  navProfileSmall: "/assets/figma/home/icons/Icon-1.svg",
+  greetingMark: "/assets/figma/home/icons/Icon-15.svg",
+  add: "/assets/figma/home/icons/Icon-12.svg",
+  check: "/assets/figma/home/icons/Icon-14.svg",
+  streak: "/assets/figma/home/icons/Icon-13.svg",
+  chevron: "/assets/figma/home/icons/Icon-11.svg",
+};

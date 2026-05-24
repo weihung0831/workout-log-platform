@@ -1,0 +1,206 @@
+.home-sidebar,
+.home-aside {
+  display: none;
+}
+
+.home-tabbar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 1px solid var(--neutral-border);
+  background: #ffffff;
+  padding: 8px 0 max(20px, env(safe-area-inset-bottom));
+}
+
+.home-tabbar-link {
+  display: grid;
+  min-width: 0;
+  justify-items: center;
+  gap: 3px;
+  color: var(--neutral-t3);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 12px;
+  text-decoration: none;
+}
+
+.home-tabbar-link--active {
+  color: var(--brand-orange);
+}
+
+.home-nav-link:focus-visible,
+.home-tabbar-link:focus-visible,
+.home-start-button:focus-visible,
+.home-section-heading a:focus-visible {
+  outline: 3px solid rgba(255, 107, 53, 0.35);
+  outline-offset: 3px;
+}
+
+@media (max-width: 360px) {
+  .home-content {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .home-today-card {
+    border-radius: 24px;
+    padding: 22px 18px;
+  }
+
+  .home-streak-card {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .home-workout-stats {
+    gap: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-page {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .home-shell {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .home-mobile-header,
+  .home-tabbar {
+    display: none;
+  }
+
+  .home-sidebar {
+    display: flex;
+    min-height: 100svh;
+    flex-direction: column;
+    border-right: 1px solid var(--neutral-border);
+    background: #fafafa;
+  }
+
+  .home-sidebar-logo {
+    display: flex;
+    height: 69px;
+    align-items: center;
+    border-bottom: 1px solid var(--neutral-border);
+    padding: 24px 20px 17px;
+  }
+
+  .home-sidebar-logo-image {
+    width: 93px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  .home-sidebar-nav {
+    display: grid;
+    gap: 2px;
+    padding: 10px 12px;
+  }
+
+  .home-nav-link {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    gap: 12px;
+    border-radius: 12px;
+    color: var(--neutral-t2);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+    padding: 0 12px;
+    text-decoration: none;
+  }
+
+  .home-nav-link--active {
+    background: var(--brand-orange-100);
+    color: var(--brand-orange);
+    font-weight: 800;
+    box-shadow: inset 3px 0 0 var(--brand-orange);
+  }
+
+  .home-sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid var(--neutral-border);
+    margin-top: auto;
+    padding: 17px 20px;
+  }
+
+  .home-sidebar-user div {
+    display: grid;
+    gap: 2px;
+  }
+
+  .home-sidebar-user strong {
+    color: var(--neutral-t1);
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 16px;
+  }
+
+  .home-sidebar-user span:not(.home-avatar) {
+    color: var(--neutral-t2);
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  .home-content {
+    padding: 28px;
+  }
+
+  .home-content-grid {
+    max-width: 640px;
+  }
+
+  .home-today-card {
+    min-height: 155px;
+  }
+
+  .home-start-button {
+    height: 54px;
+    border-radius: 16px;
+    font-size: 16px;
+  }
+
+  .home-section-heading {
+    padding-top: 16px;
+  }
+
+  .home-workout-card {
+    min-height: 127px;
+  }
+}
+
+@media (min-width: 1180px) {
+  .home-content-grid {
+    display: grid;
+    max-width: none;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+    gap: 24px;
+  }
+
+  .home-streak--main {
+    display: none;
+  }
+
+  .home-aside {
+    display: grid;
+    gap: 16px;
+  }
+
+  .home-today-card {
+    width: 100%;
+  }
+}
