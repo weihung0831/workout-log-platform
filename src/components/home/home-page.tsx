@@ -1,7 +1,8 @@
 import Image from "next/image";
 
+import { homeMockData, type HomeMockData, type WorkoutPreview } from "@/mocks/home";
+
 import { homeAssets } from "./home-assets";
-import { homeMockData, type HomeMockData, type WorkoutPreview } from "./home-mock-data";
 
 const navItems = [
   {
@@ -53,21 +54,7 @@ export function HomePage() {
     <main className={`home-page ${pageStateClass}`}>
       <section className="home-shell" aria-label="FitLog 首頁">
         <HomeSidebar />
-        <div className="home-mobile-header">
-          <div className="home-greeting">
-            <span>早安，</span>
-            <strong>Alex</strong>
-            <Image
-              aria-hidden
-              className="home-greeting-mark"
-              src={homeAssets.greetingMark}
-              alt=""
-              width={18}
-              height={18}
-            />
-          </div>
-          <span className="home-avatar home-avatar--mobile">A</span>
-        </div>
+        <MobileHeader />
         <section className="home-content">
           <div className="home-content-grid">
             <div className="home-main-column">
@@ -120,6 +107,26 @@ function getHomeState(data: HomeMockData) {
   }
 
   return "default";
+}
+
+function MobileHeader() {
+  return (
+    <div className="home-mobile-header">
+      <div className="home-greeting">
+        <span>早安，</span>
+        <strong>Alex</strong>
+        <Image
+          aria-hidden
+          className="home-greeting-mark"
+          src={homeAssets.greetingMark}
+          alt=""
+          width={18}
+          height={18}
+        />
+      </div>
+      <span className="home-avatar home-avatar--mobile">A</span>
+    </div>
+  );
 }
 
 function getTodaySummary(data: HomeMockData) {
