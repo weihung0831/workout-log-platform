@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { homeAssets } from "./home-assets";
+import { homeMockData, type HomeMockData, type WorkoutPreview } from "./home-mock-data";
 
 const navItems = [
   {
@@ -40,43 +41,16 @@ const navItems = [
   },
 ];
 
-const todayStats = [
-  { value: "6", unit: "組", label: "訓練組數" },
-  { value: "2,450", unit: "kg", label: "總重量" },
-  { value: "45", unit: "分鐘", label: "時長" },
-];
-
-const recentWorkouts = [
-  {
-    date: "昨天 · 4月4日",
-    title: "胸部・肩部訓練",
-    tags: ["上胸大肌", "三角肌前束"],
-    stats: ["8 組", "3,200 kg", "52 分鐘"],
-  },
-  {
-    date: "4月2日",
-    title: "背部・手臂訓練",
-    tags: ["闊背肌", "肱二頭肌"],
-    stats: ["10 組", "2,800 kg", "48 分鐘"],
-  },
-  {
-    date: "3月31日",
-    title: "大腿・臀部・小腿訓練",
-    tags: ["股四頭肌", "臀大肌", "腓腸肌"],
-    stats: ["12 組", "4,100 kg", "65 分鐘"],
-  },
-];
-
-const weeklyStats = [
-  { value: "4", label: "次訓練" },
-  { value: "210", label: "分鐘" },
-  { value: "36", label: "總組數" },
-  { value: "12,550", label: "kg 總重" },
-];
-
 export function HomePage() {
+  const homeState = getHomeState(homeMockData);
+  const hasPausedWorkouts = homeState === "paused" || homeState === "paused-multiple";
+  const isEmpty = homeState === "empty";
+  const todaySummary = getTodaySummary(homeMockData);
+  const recentWorkouts = getRecentWorkouts(homeMockData);
+  const pageStateClass = `home-page--${homeState}`;
+
   return (
-    <main className="home-page">
+    <main className={`home-page ${pageStateClass}`}>
       <section className="home-shell" aria-label="FitLog 首頁">
         <HomeSidebar />
         <div className="home-mobile-header">
@@ -97,23 +71,120 @@ export function HomePage() {
         <section className="home-content">
           <div className="home-content-grid">
             <div className="home-main-column">
-              <TodaySummary />
-              <StreakCard className="home-streak--main" title="連續訓練" />
-              <button className="home-start-button" type="button">
-                <Image aria-hidden src={homeAssets.add} alt="" width={20} height={20} />
-                <span>開始新訓練</span>
-              </button>
-              <RecentWorkouts />
+              {hasPausedWorkouts ? (
+                <PausedTrainingSection workouts={homeMockData.pausedWorkouts} />
+              ) : null}
+              {isEmpty ? (
+                <EmptyHomeState date={homeMockData.today.date} />
+              ) : (
+                <>
+                  <TodaySummary summary={todaySummary} />
+                  <StreakCard className="home-streak--main" title="連續訓練" />
+                  {!hasPausedWorkouts ? (
+                    <button className="home-start-button" type="button">
+                      <Image aria-hidden src={homeAssets.add} alt="" width={20} height={20} />
+                      <span>開始新訓練</span>
+                    </button>
+                  ) : null}
+                  {recentWorkouts.length > 0 ? (
+                    <RecentWorkouts workouts={recentWorkouts} />
+                  ) : null}
+                </>
+              )}
             </div>
-            <aside className="home-aside" aria-label="本週摘要">
-              <StreakCard title="連續訓練天數" />
-              <WeeklyOverview />
-            </aside>
+            {!isEmpty ? (
+              <aside className="home-aside" aria-label="本週摘要">
+                <StreakCard title="連續訓練天數" />
+                <WeeklyOverview stats={homeMockData.weeklyStats} />
+              </aside>
+            ) : null}
           </div>
         </section>
         <MobileTabBar />
       </section>
     </main>
+  );
+}
+
+function getHomeState(data: HomeMockData) {
+  if (data.pausedWorkouts.length > 1) {
+    return "paused-multiple";
+  }
+
+  if (data.pausedWorkouts.length === 1) {
+    return "paused";
+  }
+
+  if (data.recentWorkouts.length === 0) {
+    return "empty";
+  }
+
+  return "default";
+}
+
+function getTodaySummary(data: HomeMockData) {
+  const pausedCount = data.pausedWorkouts.length;
+
+  if (pausedCount === 1) {
+    return {
+      title: "繼續今日訓練",
+      date: data.today.date,
+      completed: false,
+      stats: data.today.pendingStats,
+    };
+  }
+
+  if (pausedCount > 1) {
+    return {
+      title: "開始今日訓練",
+      date: data.today.date,
+      completed: false,
+      stats: data.today.pendingStats,
+    };
+  }
+
+  return {
+    title: "今日訓練完成",
+    date: data.today.date,
+    completed: true,
+    stats: data.today.completedStats,
+  };
+}
+
+function getRecentWorkouts(data: HomeMockData) {
+  if (data.pausedWorkouts.length > 1) {
+    return [];
+  }
+
+  if (data.pausedWorkouts.length === 1) {
+    return data.recentWorkouts.slice(0, 1);
+  }
+
+  return data.recentWorkouts;
+}
+
+function EmptyHomeState({ date }: { date: string }) {
+  return (
+    <>
+      <section className="home-empty-summary" aria-label="今日訓練空狀態">
+        <p>{date}</p>
+        <h1>還沒有訓練紀錄</h1>
+        <span>開始今天的第一次訓練吧！</span>
+      </section>
+      <section className="home-empty-card" aria-label="開始訓練">
+        <span className="home-empty-icon">
+          <Image aria-hidden src={homeAssets.emptyWorkout} alt="" width={40} height={40} />
+        </span>
+        <h2>開始你的訓練旅程</h2>
+        <p>
+          記錄每一次訓練，見證自己的成長。<span>從今天開始！</span>
+        </p>
+        <button className="home-empty-button" type="button">
+          <Image aria-hidden src={homeAssets.add} alt="" width={20} height={20} />
+          <span>開始第一次訓練</span>
+        </button>
+      </section>
+    </>
   );
 }
 
@@ -154,16 +225,67 @@ function HomeSidebar() {
   );
 }
 
-function TodaySummary() {
+function PausedTrainingSection({ workouts }: { workouts: WorkoutPreview[] }) {
+  return (
+    <section className="home-paused" aria-labelledby="home-paused-title">
+      <div className="home-paused-heading">
+        <h1 id="home-paused-title">暫存中的訓練</h1>
+        <span>{workouts.length}</span>
+      </div>
+      <div className="home-paused-list">
+        {workouts.map((workout) => (
+          <article className="home-paused-card" key={workout.title}>
+            <div className="home-paused-card-main">
+              <div className="home-paused-card-body">
+                <Image
+                  className="home-paused-image"
+                  src={workout.image ?? homeAssets.chest}
+                  alt=""
+                  width={56}
+                  height={56}
+                />
+                <div className="home-paused-copy">
+                  <h2>{workout.title}</h2>
+                  <p>{workout.meta}</p>
+                  <div className="home-paused-tags" aria-label={`${workout.title} 訓練肌群`}>
+                    {workout.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <span className="home-paused-status">暫停中</span>
+            </div>
+            <div className="home-paused-actions">
+              <button className="home-paused-continue" type="button">
+                繼續訓練
+              </button>
+              <button className="home-paused-delete" type="button" aria-label="刪除暫存訓練">
+                <span className="home-delete-mobile" aria-hidden>
+                  棄
+                </span>
+                <span className="home-delete-desktop">刪除</span>
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function TodaySummary({ summary }: { summary: ReturnType<typeof getTodaySummary> }) {
   return (
     <section className="home-today-card" aria-label="今日訓練摘要">
-      <p>今天 · 2026年4月5日</p>
-      <h1>
-        今日訓練完成
-        <Image aria-hidden src={homeAssets.check} alt="" width={16} height={16} />
-      </h1>
+      <p>{summary.date}</p>
+      <h2>
+        {summary.title}
+        {summary.completed ? (
+          <Image aria-hidden src={homeAssets.check} alt="" width={16} height={16} />
+        ) : null}
+      </h2>
       <div className="home-today-stats">
-        {todayStats.map((stat) => (
+        {summary.stats.map((stat) => (
           <div className="home-today-stat" key={stat.label}>
             <strong>{stat.value}</strong>
             <span>{stat.unit}</span>
@@ -195,7 +317,7 @@ function StreakCard({ className, title }: { className?: string; title: string })
   );
 }
 
-function RecentWorkouts() {
+function RecentWorkouts({ workouts }: { workouts: WorkoutPreview[] }) {
   return (
     <section className="home-recent" aria-labelledby="home-recent-title">
       <div className="home-section-heading">
@@ -203,7 +325,7 @@ function RecentWorkouts() {
         <a href="#">查看全部</a>
       </div>
       <div className="home-workout-list">
-        {recentWorkouts.map((workout) => (
+        {workouts.map((workout) => (
           <article className="home-workout-card" key={workout.title}>
             <div className="home-workout-head">
               <div>
@@ -218,7 +340,7 @@ function RecentWorkouts() {
               ))}
             </div>
             <dl className="home-workout-stats">
-              {workout.stats.map((stat) => {
+              {workout.stats?.map((stat) => {
                 const [value, ...unit] = stat.split(" ");
                 return (
                   <div key={stat}>
@@ -235,12 +357,12 @@ function RecentWorkouts() {
   );
 }
 
-function WeeklyOverview() {
+function WeeklyOverview({ stats }: { stats: HomeMockData["weeklyStats"] }) {
   return (
     <section className="home-weekly-card" aria-labelledby="home-weekly-title">
       <h2 id="home-weekly-title">本週總覽</h2>
       <dl className="home-weekly-grid">
-        {weeklyStats.map((stat) => (
+        {stats.map((stat) => (
           <div key={stat.label}>
             <dt>{stat.label}</dt>
             <dd>{stat.value}</dd>

@@ -12,7 +12,10 @@ export const homeAssets = {
   navProfileSmall: "/assets/figma/home/icons/Icon-1.svg",
   greetingMark: "/assets/figma/home/icons/Icon-15.svg",
   add: "/assets/figma/home/icons/Icon-12.svg",
+  emptyWorkout: "/assets/figma/home/icons/Icon.svg",
   check: "/assets/figma/home/icons/Icon-14.svg",
   streak: "/assets/figma/home/icons/Icon-13.svg",
   chevron: "/assets/figma/home/icons/Icon-11.svg",
+  chest: "/assets/figma/home/images/Image.png",
+  back: "/assets/figma/home/images/Image-2.png",
 };

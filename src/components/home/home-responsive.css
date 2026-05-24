@@ -35,6 +35,9 @@
 .home-nav-link:focus-visible,
 .home-tabbar-link:focus-visible,
 .home-start-button:focus-visible,
+.home-empty-button:focus-visible,
+.home-paused-continue:focus-visible,
+.home-paused-delete:focus-visible,
 .home-section-heading a:focus-visible {
   outline: 3px solid rgba(255, 107, 53, 0.35);
   outline-offset: 3px;
@@ -49,6 +52,30 @@
   .home-today-card {
     border-radius: 24px;
     padding: 22px 18px;
+  }
+
+  .home-paused-card {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .home-empty-summary,
+  .home-empty-card {
+    border-radius: 24px;
+  }
+
+  .home-empty-summary {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .home-empty-card {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .home-paused-copy p {
+    font-size: 10px;
   }
 
   .home-streak-card {
@@ -71,6 +98,10 @@
   .home-shell {
     display: grid;
     width: 100%;
+    grid-template-columns: 156px minmax(0, 1fr);
+  }
+
+  .home-page--empty .home-shell {
     grid-template-columns: 220px minmax(0, 1fr);
   }
 
@@ -156,15 +187,88 @@
   }
 
   .home-content {
-    padding: 28px;
+    padding: 24px;
   }
 
   .home-content-grid {
-    max-width: 640px;
+    max-width: 500px;
   }
 
-  .home-today-card {
-    min-height: 155px;
+  .home-page--empty .home-content-grid {
+    max-width: 500px;
+  }
+
+  .home-main-column {
+    gap: 16px;
+  }
+
+  .home-empty-summary {
+    min-height: 118px;
+  }
+
+  .home-empty-summary span {
+    margin-top: 6px;
+  }
+
+  .home-empty-card {
+    min-height: 329px;
+  }
+
+  .home-empty-card p {
+    max-width: 436px;
+  }
+
+  .home-empty-card p span {
+    display: none;
+  }
+
+  .home-empty-button {
+    max-width: none;
+  }
+
+  .home-paused-heading h1 {
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  .home-paused-card {
+    min-height: 159px;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .home-paused-image {
+    width: 56px;
+    height: 56px;
+  }
+
+  .home-paused-copy h2 {
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  .home-paused-copy p {
+    margin-top: 3px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .home-paused-tags {
+    margin-top: 6px;
+  }
+
+  .home-paused-continue,
+  .home-paused-delete {
+    height: 44px;
+  }
+
+  .home-paused-delete {
+    width: 42px;
+    flex-basis: 42px;
+  }
+
+  .home-page--paused .home-streak--main {
+    display: none;
   }
 
   .home-start-button {
@@ -183,6 +287,14 @@
 }
 
 @media (min-width: 1180px) {
+  .home-shell {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .home-content {
+    padding: 28px;
+  }
+
   .home-content-grid {
     display: grid;
     max-width: none;
@@ -191,13 +303,74 @@
     gap: 24px;
   }
 
+  .home-page--empty .home-content {
+    display: flex;
+    justify-content: center;
+    padding-top: 110px;
+  }
+
+  .home-page--empty .home-content-grid {
+    width: 100%;
+    max-width: 680px;
+    grid-template-columns: 1fr;
+  }
+
+  .home-page--empty .home-main-column {
+    gap: 24px;
+  }
+
+  .home-page--empty .home-empty-summary {
+    min-height: 131px;
+    padding: 28px 32px;
+  }
+
+  .home-empty-summary h1 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .home-empty-summary span {
+    margin-top: 6px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .home-empty-card p span {
+    display: inline;
+  }
+
+  .home-empty-button {
+    max-width: 280px;
+  }
+
   .home-streak--main {
     display: none;
+  }
+
+  .home-page--paused .home-recent {
+    display: grid;
   }
 
   .home-aside {
     display: grid;
     gap: 16px;
+  }
+
+  .home-paused-card {
+    min-height: 159px;
+  }
+
+  .home-paused-delete {
+    width: 69px;
+    flex-basis: 69px;
+  }
+
+  .home-delete-mobile {
+    display: none;
+  }
+
+  .home-delete-desktop {
+    display: inline;
   }
 
   .home-today-card {

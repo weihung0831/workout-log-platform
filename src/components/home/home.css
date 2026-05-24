@@ -76,10 +76,18 @@
   gap: 12px;
 }
 
+.home-page--paused .home-recent {
+  display: none;
+}
+
+.home-page--paused-multiple .home-streak--main {
+  display: none;
+}
+
 .home-today-card {
   position: relative;
   overflow: hidden;
-  min-height: 155px;
+  min-height: 175px;
   border-radius: 28px;
   background: linear-gradient(135deg, #ff6338 0%, #ff5425 100%);
   color: #ffffff;
@@ -124,7 +132,7 @@
   line-height: 15px;
 }
 
-.home-today-card h1 {
+.home-today-card h2 {
   position: relative;
   z-index: 1;
   display: flex;
