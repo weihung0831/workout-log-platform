@@ -1,7 +1,7 @@
 export const resetPasswordAssets = {
-  fitlog: "/assets/figma/email-verify/brand/fitlog.png",
-  resetPassword: "/assets/figma/reset-password/icons/reset-password.svg",
-  lock: "/assets/figma/sign-in/icons/lock.svg",
-  eye: "/assets/figma/sign-in/icons/eye.svg",
-  checkSuccess: "/assets/figma/email-verify/icons/check-success.svg",
+  fitlog: "/assets/figma/auth/images/Image (FitLog).png",
+  resetPassword: "/assets/figma/auth/icons/Icon-5.svg",
+  lock: "/assets/figma/auth/icons/Icon-15.svg",
+  eye: "/assets/figma/auth/icons/Icon-14.svg",
+  checkSuccess: "/assets/figma/auth/icons/Icon-10.svg",
 };

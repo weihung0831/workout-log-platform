@@ -1,7 +1,6 @@
 export const emailVerifyAssets = {
-  fitlog: "/assets/figma/email-verify/brand/fitlog.png",
-  emailMobileDesktop:
-    "/assets/figma/email-verify/icons/email-mobile-desktop.svg",
-  emailTablet: "/assets/figma/email-verify/icons/email-tablet.svg",
-  checkSuccess: "/assets/figma/email-verify/icons/check-success.svg",
+  fitlog: "/assets/figma/auth/images/Image (FitLog).png",
+  emailMobileDesktop: "/assets/figma/auth/icons/Icon-11.svg",
+  emailTablet: "/assets/figma/auth/icons/Icon-9.svg",
+  checkSuccess: "/assets/figma/auth/icons/Icon-10.svg",
 };
