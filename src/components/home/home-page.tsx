@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { AppSidebar } from "@/components/navigation/app-sidebar";
 import { homeMockData, type HomeMockData, type WorkoutPreview } from "@/mocks/home";
 
 import { homeAssets } from "./home-assets";
@@ -42,6 +43,12 @@ const navItems = [
   },
 ];
 
+const sidebarUser = {
+  avatar: "陳",
+  name: "陳先仁",
+  caption: "健身 · 12週",
+};
+
 export function HomePage() {
   const homeState = getHomeState(homeMockData);
   const hasPausedWorkouts = homeState === "paused" || homeState === "paused-multiple";
@@ -53,7 +60,7 @@ export function HomePage() {
   return (
     <main className={`home-page ${pageStateClass}`}>
       <section className="home-shell" aria-label="FitLog 首頁">
-        <HomeSidebar />
+        <AppSidebar items={navItems} logoSrc={homeAssets.logo} user={sidebarUser} />
         <MobileHeader />
         <section className="home-content">
           <div className="home-content-grid">
@@ -192,43 +199,6 @@ function EmptyHomeState({ date }: { date: string }) {
         </button>
       </section>
     </>
-  );
-}
-
-function HomeSidebar() {
-  return (
-    <aside className="home-sidebar" aria-label="主要導覽">
-      <div className="home-sidebar-logo">
-        <Image
-          className="home-sidebar-logo-image"
-          src={homeAssets.logo}
-          alt="FitLog"
-          width={371}
-          height={112}
-          priority
-        />
-      </div>
-      <nav className="home-sidebar-nav" aria-label="主要導覽">
-        {navItems.map((item) => (
-          <a
-            aria-current={item.active ? "page" : undefined}
-            className={item.active ? "home-nav-link home-nav-link--active" : "home-nav-link"}
-            href={item.href}
-            key={item.label}
-          >
-            <Image aria-hidden src={item.sideIcon} alt="" width={20} height={20} />
-            <span>{item.label}</span>
-          </a>
-        ))}
-      </nav>
-      <div className="home-sidebar-user">
-        <span className="home-avatar">陳</span>
-        <div>
-          <strong>陳先仁</strong>
-          <span>健身 · 12週</span>
-        </div>
-      </div>
-    </aside>
   );
 }
 

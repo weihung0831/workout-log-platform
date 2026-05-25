@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useState, type CSSProperties } from "react";
 
+import { AppSidebar } from "@/components/navigation/app-sidebar";
+
 import { statsAssets } from "./stats-assets";
 import {
   navItems,
@@ -14,6 +16,12 @@ import {
   type StatsDataset,
 } from "./stats-data";
 
+const sidebarUser = {
+  avatar: "陳",
+  name: "陳先仁",
+  caption: "健身 · 12週",
+};
+
 export function StatsPage() {
   const [activePeriod, setActivePeriod] = useState<PeriodKey>("month");
   const statsData = statsDatasets[activePeriod];
@@ -21,7 +29,7 @@ export function StatsPage() {
   return (
     <main className="stats-page">
       <section className="stats-shell" aria-label="FitLog 統計分析">
-        <StatsSidebar />
+        <AppSidebar items={navItems} logoSrc={statsAssets.logo} user={sidebarUser} />
         <MobileHeader statsData={statsData} />
         <section className="stats-workspace">
           <DesktopHeader activePeriod={activePeriod} onPeriodChange={setActivePeriod} statsData={statsData} />
@@ -298,36 +306,6 @@ function PrRecordsCard({ records }: { records: PrRecord[] }) {
         ))}
       </div>
     </section>
-  );
-}
-
-function StatsSidebar() {
-  return (
-    <aside className="home-sidebar" aria-label="主要導覽">
-      <div className="home-sidebar-logo">
-        <Image className="home-sidebar-logo-image" src={statsAssets.logo} alt="FitLog" width={371} height={112} priority />
-      </div>
-      <nav className="home-sidebar-nav" aria-label="主要導覽">
-        {navItems.map((item) => (
-          <a
-            aria-current={item.active ? "page" : undefined}
-            className={item.active ? "home-nav-link home-nav-link--active" : "home-nav-link"}
-            href={item.href}
-            key={item.label}
-          >
-            <Image aria-hidden src={item.sideIcon} alt="" width={20} height={20} />
-            <span>{item.label}</span>
-          </a>
-        ))}
-      </nav>
-      <div className="home-sidebar-user">
-        <span className="home-avatar">陳</span>
-        <div>
-          <strong>陳先仁</strong>
-          <span>健身 · 12週</span>
-        </div>
-      </div>
-    </aside>
   );
 }
 
