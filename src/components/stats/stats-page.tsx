@@ -9,12 +9,12 @@ import { statsAssets } from "./stats-assets";
 import {
   navItems,
   periodTabs,
-  statsDatasets,
   type MetricCardData,
   type PeriodKey,
   type PrRecord,
   type StatsDataset,
 } from "./stats-data";
+import { statsDatasets } from "./stats-mock-data";
 
 const sidebarUser = {
   avatar: "陳",
@@ -25,14 +25,15 @@ const sidebarUser = {
 export function StatsPage() {
   const [activePeriod, setActivePeriod] = useState<PeriodKey>("month");
   const statsData = statsDatasets[activePeriod];
+  const isEmpty = Boolean(statsData.emptyState);
 
   return (
     <main className="stats-page">
       <section className="stats-shell" aria-label="FitLog 統計分析">
         <AppSidebar items={navItems} logoSrc={statsAssets.logo} user={sidebarUser} />
-        <MobileHeader statsData={statsData} />
-        <section className="stats-workspace">
-          <DesktopHeader activePeriod={activePeriod} onPeriodChange={setActivePeriod} statsData={statsData} />
+        <MobileHeader isEmpty={isEmpty} statsData={statsData} />
+        <section className={isEmpty ? "stats-workspace stats-workspace--empty" : "stats-workspace"}>
+          <DesktopHeader activePeriod={activePeriod} isEmpty={isEmpty} onPeriodChange={setActivePeriod} statsData={statsData} />
           <StatsContent activePeriod={activePeriod} onPeriodChange={setActivePeriod} statsData={statsData} />
         </section>
         <MobileTabBar />
@@ -42,42 +43,52 @@ export function StatsPage() {
 }
 
 function MobileHeader({
+  isEmpty,
   statsData,
 }: {
+  isEmpty: boolean;
   statsData: StatsDataset;
 }) {
   return (
     <header className="stats-mobile-header">
       <h1>統計分析</h1>
-      <RangeSwitcher size="compact" statsData={statsData} />
+      {isEmpty ? null : <RangeSwitcher size="compact" statsData={statsData} />}
     </header>
   );
 }
 
 function DesktopHeader({
   activePeriod,
+  isEmpty,
   onPeriodChange,
   statsData,
 }: {
   activePeriod: PeriodKey;
+  isEmpty: boolean;
   onPeriodChange: (period: PeriodKey) => void;
   statsData: StatsDataset;
 }) {
   return (
-    <header className="stats-desktop-header">
+    <header className={isEmpty ? "stats-desktop-header stats-desktop-header--empty" : "stats-desktop-header"}>
       <div className="stats-desktop-heading">
         <h1>統計分析</h1>
-        <div className="stats-tablet-range">
-          <RangeSwitcher statsData={statsData} />
-        </div>
+        {isEmpty ? null : (
+          <div className="stats-tablet-range">
+            <RangeSwitcher statsData={statsData} />
+          </div>
+        )}
       </div>
-      <div className="stats-desktop-tools">
-        <PeriodTabs activePeriod={activePeriod} onPeriodChange={onPeriodChange} />
-        <div className="stats-desktop-range">
-          <RangeSwitcher statsData={statsData} />
-        </div>
+      {isEmpty ? (
         <span className="stats-avatar">陳</span>
-      </div>
+      ) : (
+        <div className="stats-desktop-tools">
+          <PeriodTabs activePeriod={activePeriod} onPeriodChange={onPeriodChange} />
+          <div className="stats-desktop-range">
+            <RangeSwitcher statsData={statsData} />
+          </div>
+          <span className="stats-avatar">陳</span>
+        </div>
+      )}
     </header>
   );
 }
@@ -91,6 +102,17 @@ function StatsContent({
   onPeriodChange: (period: PeriodKey) => void;
   statsData: StatsDataset;
 }) {
+  if (statsData.emptyState) {
+    return (
+      <div className={`stats-content stats-content--${activePeriod} stats-content--empty`}>
+        <div className="stats-mobile-tabs stats-mobile-tabs--empty">
+          <PeriodTabs activePeriod={activePeriod} onPeriodChange={onPeriodChange} />
+        </div>
+        <StatsEmptyState emptyState={statsData.emptyState} />
+      </div>
+    );
+  }
+
   return (
     <div className={`stats-content stats-content--${activePeriod}`}>
       <div className="stats-mobile-tabs">
@@ -108,6 +130,31 @@ function StatsContent({
       </div>
       <PrRecordsCard records={statsData.prRecords} />
     </div>
+  );
+}
+
+function StatsEmptyState({ emptyState }: { emptyState: NonNullable<StatsDataset["emptyState"]> }) {
+  return (
+    <section className="stats-empty-state" aria-labelledby="stats-empty-title">
+      <div className="stats-empty-icon" aria-hidden>
+        <Image aria-hidden src={statsAssets.emptyStats} alt="" width={56} height={56} />
+      </div>
+      <h2 id="stats-empty-title">{emptyState.title}</h2>
+      <p className="stats-empty-copy">
+        <span className="stats-empty-copy-default">
+          {emptyState.description.map((line) => (
+            <span key={line}>{line}</span>
+          ))}
+        </span>
+        {emptyState.desktopDescription ? (
+          <span className="stats-empty-copy-desktop">{emptyState.desktopDescription}</span>
+        ) : null}
+      </p>
+      <button className="stats-empty-action" type="button">
+        {emptyState.actionLabel}
+      </button>
+      {emptyState.caption ? <p className="stats-empty-caption">{emptyState.caption}</p> : null}
+    </section>
   );
 }
 

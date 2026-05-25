@@ -4,6 +4,7 @@ import "@/components/stats/stats.css";
 import "@/components/stats/stats-year.css";
 import "@/components/stats/stats-responsive.css";
 import "@/components/stats/stats-desktop.css";
+import "@/components/stats/stats-empty.css";
 
 export const metadata: Metadata = {
   title: "FitLog",
