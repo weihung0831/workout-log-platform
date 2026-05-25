@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "@/components/stats/stats.css";
+import "@/components/stats/stats-responsive.css";
+import "@/components/stats/stats-desktop.css";
 
 export const metadata: Metadata = {
   title: "FitLog",

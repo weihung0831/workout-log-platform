@@ -27,7 +27,7 @@ const loadingNavItems = [
   },
   {
     label: "統計",
-    href: "#",
+    href: "/stats",
     active: false,
     icon: homeAssets.navStats,
     sideIcon: homeAssets.navStatsSmall,

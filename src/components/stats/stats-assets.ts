@@ -1,0 +1,18 @@
+export const statsAssets = {
+  logo: "/assets/figma/stats/images/Image (FitLog).png",
+  navHome: "/assets/figma/stats/icons/Icon-18.svg",
+  navHomeSmall: "/assets/figma/stats/icons/Icon-13.svg",
+  navRecord: "/assets/figma/stats/icons/Icon-17.svg",
+  navRecordSmall: "/assets/figma/stats/icons/Icon-12.svg",
+  navJournal: "/assets/figma/stats/icons/Icon-16.svg",
+  navJournalSmall: "/assets/figma/stats/icons/Icon-10.svg",
+  navStatsActive: "/assets/figma/stats/icons/Icon-15.svg",
+  navStatsActiveSmall: "/assets/figma/stats/icons/Icon-20.svg",
+  navProfile: "/assets/figma/stats/icons/Icon-14.svg",
+  navProfileSmall: "/assets/figma/stats/icons/Icon-24.svg",
+  metricDumbbell: "/assets/figma/stats/icons/Icon-6.svg",
+  metricTrophy: "/assets/figma/stats/icons/Icon-11.svg",
+  metricCalendar: "/assets/figma/stats/icons/Icon-19.svg",
+  streakFlame: "/assets/figma/stats/icons/Icon-5.svg",
+  prRecord: "/assets/figma/stats/icons/Icon-4.svg",
+};

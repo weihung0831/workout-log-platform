@@ -1,0 +1,365 @@
+.stats-pr-card {
+  display: grid;
+  gap: 12px;
+  min-height: 293px;
+}
+
+.stats-pr-list {
+  display: grid;
+}
+
+.stats-pr-record {
+  display: flex;
+  min-height: 57px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--neutral-border);
+  padding: 10px 0;
+}
+
+.stats-pr-record:last-child {
+  border-bottom: 0;
+}
+
+.stats-pr-main {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.stats-pr-icon {
+  display: grid;
+  width: 26px;
+  height: 22px;
+  flex: 0 0 auto;
+  align-items: center;
+  color: var(--neutral-t1);
+}
+
+.stats-pr-icon img {
+  width: 18px;
+  height: 18px;
+}
+
+.stats-pr-record h3 {
+  overflow: hidden;
+  color: var(--neutral-t1);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 17px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stats-pr-record p {
+  margin: 1px 0 0;
+}
+
+.stats-pr-main p {
+  color: var(--neutral-t2);
+  font-size: 11px;
+  line-height: 15px;
+}
+
+.stats-pr-result {
+  display: grid;
+  gap: 4px;
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.stats-pr-result p {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  justify-content: flex-end;
+  color: var(--brand-orange);
+}
+
+.stats-pr-result strong {
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 17px;
+}
+
+.stats-pr-result p span {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.stats-pr-result small {
+  display: block;
+  color: #34c759;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.stats-pr-result small span {
+  display: none;
+}
+
+.stats-period-tab:focus-visible,
+.stats-month-switcher button:focus-visible,
+.stats-pr-record:focus-visible {
+  outline: 3px solid rgba(255, 107, 53, 0.35);
+  outline-offset: 3px;
+}
+
+.stats-metric-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: currentcolor;
+}
+
+@media (max-width: 360px) {
+  .stats-content {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .stats-metric-card,
+  .stats-streak-card,
+  .stats-panel {
+    border-radius: 14px;
+  }
+
+  .stats-metric-card {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .stats-bar-plot {
+    gap: 7px;
+  }
+
+  .stats-muscle-content {
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .stats-donut {
+    width: 92px;
+    height: 92px;
+  }
+}
+
+@media (min-width: 768px) {
+  .stats-page {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .stats-shell {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .stats-mobile-header,
+  .stats-mobile-tabs,
+  .stats-shell .home-tabbar {
+    display: none;
+  }
+
+  .stats-workspace {
+    min-width: 0;
+  }
+
+  .stats-desktop-header {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--neutral-border);
+    background: #ffffff;
+    padding: 0 28px;
+  }
+
+  .stats-desktop-header h1 {
+    color: var(--neutral-t1);
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 28px;
+  }
+
+  .stats-desktop-tools {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .stats-desktop-tools .stats-period-tabs {
+    width: 234px;
+  }
+
+  .stats-avatar {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-orange-dark) 100%);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .stats-content {
+    width: 100%;
+    max-width: 1060px;
+    gap: 16px;
+    padding: 24px;
+  }
+
+  .stats-metric-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .stats-metric-card,
+  .stats-streak-card {
+    min-height: 122px;
+  }
+
+  .stats-metric-card {
+    padding: 14px 16px;
+  }
+
+  .stats-metric-card-top {
+    order: 1;
+    justify-content: space-between;
+    margin-top: 0;
+  }
+
+  .stats-metric-icon {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 12px;
+  }
+
+  .stats-metric-card--dumbbell .stats-metric-icon {
+    background: var(--brand-orange-100);
+    color: var(--brand-orange);
+  }
+
+  .stats-metric-card--trophy .stats-metric-icon {
+    background: #e8f8f5;
+    color: #4ecdc4;
+  }
+
+  .stats-metric-card--calendar .stats-metric-icon {
+    background: #e8f0ff;
+    color: #45b7d1;
+  }
+
+  .stats-metric-value {
+    order: 2;
+    margin-top: 10px;
+  }
+
+  .stats-metric-label {
+    order: 3;
+    margin-top: 2px;
+  }
+
+  .stats-metric-card--trophy .stats-metric-value strong {
+    font-size: 20px;
+    line-height: 22px;
+  }
+
+  .stats-streak-card {
+    justify-content: flex-start;
+    gap: 4px;
+    padding: 16px 20px;
+  }
+
+  .stats-streak-title {
+    font-size: 11px;
+    line-height: 14px;
+  }
+
+  .stats-streak-title img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .stats-streak-card strong {
+    font-size: 28px;
+    line-height: 33px;
+  }
+
+  .stats-streak-card small {
+    font-size: 12px;
+    line-height: 17px;
+  }
+
+  .stats-analysis-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .stats-panel {
+    padding: 20px;
+  }
+
+  .stats-duration-card {
+    min-height: 323px;
+  }
+
+  .stats-panel h2 {
+    font-size: 15px;
+    line-height: 21px;
+  }
+
+  .stats-average strong {
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+  .stats-bar-plot {
+    height: 232px;
+    gap: 18px;
+    margin-top: 14px;
+  }
+
+  .stats-bar {
+    width: min(100%, 60px);
+    border-radius: 10px 10px 6px 6px;
+  }
+
+  .stats-muscle-card {
+    min-height: 323px;
+  }
+
+  .stats-muscle-content {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 16px;
+    margin-top: 12px;
+  }
+
+  .stats-donut {
+    width: 120px;
+    height: 120px;
+  }
+
+  .stats-donut-center {
+    width: 72px;
+    height: 72px;
+  }
+
+  .stats-donut-center strong {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .stats-muscle-list {
+    width: 100%;
+  }
+
+}
