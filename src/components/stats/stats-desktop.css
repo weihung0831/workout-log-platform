@@ -1,4 +1,8 @@
 @media (min-width: 1180px) {
+  .stats-content {
+    max-width: none;
+  }
+
   .stats-desktop-header {
     background: #ffffff;
     border-bottom: 1px solid var(--neutral-border);
@@ -147,7 +151,7 @@
   }
 
   .stats-analysis-grid {
-    grid-template-columns: minmax(0, 664px) 332px;
+    grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
   }
 
   .stats-duration-card,
