@@ -185,20 +185,24 @@ function StreakCard({ streak }: { streak: NonNullable<StatsDataset["streak"]> })
   return (
     <article className="stats-streak-card">
       <div className="stats-streak-title">
-        <Image aria-hidden src={statsAssets.streakFlame} alt="" width={16} height={16} />
-        <span>{streak.title}</span>
+        <Image aria-hidden src={streak.iconSrc ?? statsAssets.streakFlame} alt="" width={16} height={16} />
+        <span className="stats-streak-title-default">{streak.title}</span>
+        {streak.compactTitle ? <span className="stats-streak-title-compact">{streak.compactTitle}</span> : null}
       </div>
       <p>
         <strong>{streak.value}</strong>
         <span>{streak.unit}</span>
       </p>
-      <small>{streak.caption}</small>
+      <small>
+        <span className="stats-streak-caption-mobile">{streak.caption}</span>
+        {streak.desktopCaption ? <span className="stats-streak-caption-desktop">{streak.desktopCaption}</span> : null}
+      </small>
     </article>
   );
 }
 
 function TrainingDurationCard({ duration }: { duration: StatsDataset["duration"] }) {
-  const maxChartValue = Math.max(...duration.bars.map((item) => item.value));
+  const maxChartValue = duration.maxValue ?? Math.max(...duration.bars.map((item) => item.value));
 
   return (
     <section className="stats-panel stats-duration-card" aria-labelledby="stats-duration-title">
@@ -212,7 +216,14 @@ function TrainingDurationCard({ duration }: { duration: StatsDataset["duration"]
         </div>
         <p className="stats-average">
           <strong>{duration.average}</strong>
-          <span>{duration.averageUnit ?? "分均"}</span>
+          {duration.desktopAverageUnit ? (
+            <>
+              <span className="stats-average-unit-mobile">{duration.averageUnit ?? "分均"}</span>
+              <span className="stats-average-unit-desktop">{duration.desktopAverageUnit}</span>
+            </>
+          ) : (
+            <span>{duration.averageUnit ?? "分均"}</span>
+          )}
         </p>
       </div>
       <div
@@ -222,22 +233,43 @@ function TrainingDurationCard({ duration }: { duration: StatsDataset["duration"]
       >
         {duration.bars.map((item) => {
           const isOutlined = item.variant === "outline";
+          const isMuted = item.variant === "muted";
           const isMutedOutline = item.variant === "muted-outline";
-          const barStyle = {
+          const barValue = item.displayValue ?? item.value;
+          const barColumnStyle = {
             "--bar-height": `${(item.value / maxChartValue) * 100}%`,
+          } as CSSProperties;
+          const barStyle = {
+            ...barColumnStyle,
             backgroundColor: item.hiddenValue ? "#e5e5ea" : undefined,
           } as CSSProperties;
 
           return (
-            <div className="stats-bar-column" key={item.label}>
+            <div className="stats-bar-column" key={item.label} style={barColumnStyle}>
               <span className={item.active && !isOutlined ? "stats-bar-value stats-bar-value--active" : "stats-bar-value"}>
-                {item.hiddenValue ? "" : item.displayValue ?? item.value}
+                {item.hiddenValue ? "" : (
+                  <>
+                    <span
+                      className={
+                        item.desktopDisplayValue
+                          ? "stats-bar-value-mobile stats-bar-value-mobile--alternate"
+                          : "stats-bar-value-mobile"
+                      }
+                    >
+                      {barValue}
+                    </span>
+                    {item.desktopDisplayValue ? (
+                      <span className="stats-bar-value-desktop">{item.desktopDisplayValue}</span>
+                    ) : null}
+                  </>
+                )}
               </span>
               <span
                 className={[
                   "stats-bar",
                   item.active ? "stats-bar--active" : "",
                   isOutlined ? "stats-bar--outline" : "",
+                  isMuted ? "stats-bar--muted" : "",
                   isMutedOutline ? "stats-bar--muted-outline" : "",
                 ]
                   .filter(Boolean)

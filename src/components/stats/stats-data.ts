@@ -1,4 +1,5 @@
 import { statsAssets } from "./stats-assets";
+import { yearDataset } from "./stats-year-data";
 
 export type PeriodKey = "week" | "month" | "quarter" | "year";
 
@@ -17,8 +18,9 @@ export type BarItem = {
   value: number;
   active?: boolean;
   displayValue?: string;
+  desktopDisplayValue?: string;
   hiddenValue?: boolean;
-  variant?: "outline" | "muted-outline";
+  variant?: "outline" | "muted" | "muted-outline";
 };
 
 export type MuscleGroup = {
@@ -46,9 +48,12 @@ export type StatsDataset = {
   metrics: MetricCardData[];
   streak?: {
     title: string;
+    compactTitle?: string;
     value: string;
     unit: string;
     caption: string;
+    desktopCaption?: string;
+    iconSrc?: string;
   };
   duration: {
     title: string;
@@ -56,6 +61,8 @@ export type StatsDataset = {
     subtitle: string;
     average: string;
     averageUnit?: string;
+    desktopAverageUnit?: string;
+    maxValue?: number;
     aria: string;
     bars: BarItem[];
   };
@@ -376,10 +383,5 @@ export const statsDatasets: Record<PeriodKey, StatsDataset> = {
       },
     ],
   },
-  year: {
-    ...monthDataset,
-    rangeLabel: "2026年",
-    previousLabel: "上一年",
-    nextLabel: "下一年",
-  },
+  year: yearDataset,
 };

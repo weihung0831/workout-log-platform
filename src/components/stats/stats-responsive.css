@@ -27,8 +27,16 @@
   min-height: 176px;
 }
 
+.stats-content--year .stats-pr-card {
+  min-height: 232px;
+}
+
 .stats-content--week .stats-pr-record:nth-child(2),
 .stats-content--quarter .stats-pr-record:nth-child(2) {
+  border-bottom: 0;
+}
+
+.stats-content--year .stats-pr-record:nth-child(3) {
   border-bottom: 0;
 }
 
@@ -206,9 +214,16 @@
 
 @media (min-width: 768px) and (max-width: 1179px) {
   .stats-content--month .stats-metric-icon,
-  .stats-content--quarter .stats-metric-icon {
+  .stats-content--quarter .stats-metric-icon,
+  .stats-content--year .stats-metric-icon {
     display: none;
   }
+
+  .stats-content--year .stats-metric-card,
+  .stats-content--year .stats-streak-card {
+    min-height: 86px;
+  }
+
 }
 
 @media (min-width: 768px) {
@@ -321,87 +336,56 @@
   .stats-content--month .stats-metric-card,
   .stats-content--month .stats-streak-card,
   .stats-content--quarter .stats-metric-card,
-  .stats-content--quarter .stats-streak-card,
-  .stats-content--year .stats-metric-card,
-  .stats-content--year .stats-streak-card {
+  .stats-content--quarter .stats-streak-card {
     min-height: 122px;
   }
 
   .stats-content--month .stats-metric-card-top,
-  .stats-content--quarter .stats-metric-card-top,
-  .stats-content--year .stats-metric-card-top {
+  .stats-content--quarter .stats-metric-card-top {
     order: 1;
     justify-content: space-between;
     margin-top: 0;
   }
 
-  .stats-content--year .stats-metric-icon {
-    display: grid;
-    width: 38px;
-    height: 38px;
-    place-items: center;
-    border-radius: 12px;
-  }
-
-  .stats-content--year .stats-metric-card--dumbbell .stats-metric-icon,
-  .stats-content--year .stats-metric-card--duration .stats-metric-icon {
-    background: var(--brand-orange-100);
-  }
-
-  .stats-content--year .stats-metric-card--trophy .stats-metric-icon {
-    background: #e8f8f5;
-  }
-
-  .stats-content--year .stats-metric-card--calendar .stats-metric-icon {
-    background: #e8f0ff;
-  }
-
   .stats-content--month .stats-metric-value,
-  .stats-content--quarter .stats-metric-value,
-  .stats-content--year .stats-metric-value {
+  .stats-content--quarter .stats-metric-value {
     order: 2;
     margin-top: 10px;
   }
 
   .stats-content--month .stats-metric-label,
-  .stats-content--quarter .stats-metric-label,
-  .stats-content--year .stats-metric-label {
+  .stats-content--quarter .stats-metric-label {
     order: 3;
     margin-top: 2px;
   }
 
   .stats-content--month .stats-streak-card,
-  .stats-content--quarter .stats-streak-card,
-  .stats-content--year .stats-streak-card {
+  .stats-content--quarter .stats-streak-card {
     justify-content: flex-start;
     gap: 4px;
     padding: 16px 20px;
   }
 
   .stats-content--month .stats-streak-title,
-  .stats-content--quarter .stats-streak-title,
-  .stats-content--year .stats-streak-title {
+  .stats-content--quarter .stats-streak-title {
     font-size: 11px;
     line-height: 14px;
   }
 
   .stats-content--month .stats-streak-title img,
-  .stats-content--quarter .stats-streak-title img,
-  .stats-content--year .stats-streak-title img {
+  .stats-content--quarter .stats-streak-title img {
     width: 16px;
     height: 16px;
   }
 
   .stats-content--month .stats-streak-card strong,
-  .stats-content--quarter .stats-streak-card strong,
-  .stats-content--year .stats-streak-card strong {
+  .stats-content--quarter .stats-streak-card strong {
     font-size: 28px;
     line-height: 33px;
   }
 
   .stats-content--month .stats-streak-card small,
-  .stats-content--quarter .stats-streak-card small,
-  .stats-content--year .stats-streak-card small {
+  .stats-content--quarter .stats-streak-card small {
     font-size: 12px;
     line-height: 17px;
   }

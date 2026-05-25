@@ -1,0 +1,110 @@
+.stats-streak-title-compact,
+.stats-streak-caption-desktop,
+.stats-average-unit-desktop,
+.stats-bar-value-desktop {
+  display: none;
+}
+
+.stats-content--year .stats-streak-card {
+  background: #ffffff;
+  color: var(--neutral-t1);
+  padding: 14px 16px;
+}
+
+.stats-content--year .stats-streak-title {
+  order: 2;
+  color: var(--neutral-t2);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 17px;
+}
+
+.stats-content--year .stats-streak-title img,
+.stats-content--year .stats-streak-title-default {
+  display: none;
+}
+
+.stats-content--year .stats-streak-title-compact {
+  display: inline;
+}
+
+.stats-content--year .stats-streak-card p {
+  order: 1;
+  color: var(--neutral-t1);
+}
+
+.stats-content--year .stats-streak-card strong {
+  color: var(--neutral-t1);
+  font-size: 24px;
+  line-height: 26px;
+}
+
+.stats-content--year .stats-streak-card p span {
+  color: var(--neutral-t2);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.stats-content--year .stats-streak-card small {
+  order: 3;
+  display: inline-flex;
+  width: fit-content;
+  min-height: 15.5px;
+  align-items: center;
+  border-radius: 10px;
+  background: #e8f8ef;
+  color: #34c759;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 12px;
+  padding: 2px 7px;
+}
+
+.stats-content--year .stats-bar-plot {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0 calc(33.333% - 14px),
+    #eeeeee calc(33.333% - 14px) calc(33.333% - 13px),
+    transparent calc(33.333% - 13px) calc(66.667% - 14px),
+    #eeeeee calc(66.667% - 14px) calc(66.667% - 13px),
+    transparent calc(66.667% - 13px) calc(100% - 15px),
+    #eeeeee calc(100% - 15px) calc(100% - 14px),
+    transparent calc(100% - 14px)
+  );
+}
+
+.stats-content--year .stats-bar-column {
+  position: relative;
+  display: block;
+  padding-bottom: 14px;
+}
+
+.stats-content--year .stats-bar-value,
+.stats-content--year .stats-bar,
+.stats-content--year .stats-bar-label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.stats-content--year .stats-bar-value {
+  bottom: calc(14px + var(--bar-height) + 8px);
+  line-height: 14px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stats-content--year .stats-bar {
+  bottom: 14px;
+}
+
+.stats-content--year .stats-bar-label {
+  bottom: 0;
+}
+
+.stats-bar--muted {
+  height: 8px !important;
+  border: 1px dashed #e0e0e0;
+  border-radius: 999px;
+  background: #f0f0f0 !important;
+}

@@ -12,6 +12,7 @@ export const statsAssets = {
   navProfileSmall: "/assets/figma/stats/icons/Icon-24.svg",
   metricDumbbell: "/assets/figma/stats/icons/Icon-6.svg",
   metricTrophy: "/assets/figma/stats/icons/Icon-11.svg",
+  metricTrophyWhite: "/assets/figma/stats/icons/Icon-21.svg",
   metricCalendar: "/assets/figma/stats/icons/Icon-19.svg",
   metricDuration: "/assets/figma/stats/icons/Icon-1.svg",
   metricMonths: "/assets/figma/stats/icons/Icon.svg",

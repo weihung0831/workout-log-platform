@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "@/components/stats/stats.css";
+import "@/components/stats/stats-year.css";
 import "@/components/stats/stats-responsive.css";
 import "@/components/stats/stats-desktop.css";
 

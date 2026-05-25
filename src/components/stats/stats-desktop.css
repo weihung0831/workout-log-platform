@@ -81,6 +81,71 @@
     line-height: 22px;
   }
 
+  .stats-content--year .stats-streak-card {
+    gap: 4px;
+    justify-content: flex-start;
+    background: linear-gradient(152deg, var(--brand-orange) 0%, var(--brand-orange-dark) 100%);
+    color: #ffffff;
+    padding: 20px;
+  }
+
+  .stats-content--year .stats-streak-title {
+    order: 1;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 14px;
+  }
+
+  .stats-content--year .stats-streak-title img,
+  .stats-content--year .stats-streak-title-default {
+    display: inline;
+  }
+
+  .stats-content--year .stats-streak-title img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .stats-content--year .stats-streak-title-compact,
+  .stats-content--year .stats-streak-caption-mobile {
+    display: none;
+  }
+
+  .stats-content--year .stats-streak-card p {
+    order: 2;
+    color: #ffffff;
+  }
+
+  .stats-content--year .stats-streak-card strong {
+    color: #ffffff;
+    font-size: 28px;
+    line-height: 33px;
+  }
+
+  .stats-content--year .stats-streak-card p span {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    font-weight: 900;
+  }
+
+  .stats-content--year .stats-streak-card small {
+    order: 3;
+    display: block;
+    width: auto;
+    min-height: auto;
+    border-radius: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 12px;
+    line-height: 17px;
+    padding: 0;
+  }
+
+  .stats-content--year .stats-streak-caption-desktop {
+    display: inline;
+  }
+
   .stats-analysis-grid {
     grid-template-columns: minmax(0, 664px) 332px;
   }
@@ -93,6 +158,16 @@
   .stats-average strong {
     font-size: 26px;
     line-height: 30px;
+  }
+
+  .stats-average-unit-mobile,
+  .stats-bar-value-mobile--alternate {
+    display: none;
+  }
+
+  .stats-average-unit-desktop,
+  .stats-bar-value-desktop {
+    display: inline;
   }
 
   .stats-bar-plot {
@@ -113,6 +188,10 @@
   .stats-content--quarter .stats-bar-plot {
     box-sizing: border-box;
     padding-top: 32px;
+  }
+
+  .stats-content--year .stats-bar-plot {
+    height: 237px;
   }
 
   .stats-muscle-content {
