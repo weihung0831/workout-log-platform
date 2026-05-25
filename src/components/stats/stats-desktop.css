@@ -62,6 +62,10 @@
     background: #e8f0ff;
   }
 
+  .stats-metric-card--months .stats-metric-icon {
+    background: #fff3e0;
+  }
+
   .stats-metric-value {
     order: 2;
     margin-top: 10px;
@@ -102,6 +106,15 @@
     border-radius: 10px 10px 6px 6px;
   }
 
+  .stats-content--quarter .stats-bar {
+    width: min(100%, 140px);
+  }
+
+  .stats-content--quarter .stats-bar-plot {
+    box-sizing: border-box;
+    padding-top: 32px;
+  }
+
   .stats-muscle-content {
     grid-template-columns: minmax(0, 1fr);
     justify-items: center;
@@ -120,6 +133,15 @@
   }
 
   .stats-donut-center strong {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .stats-muscle-card--summary .stats-muscle-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stats-muscle-total strong {
     font-size: 14px;
     line-height: 18px;
   }
@@ -183,7 +205,12 @@
     line-height: 13px;
   }
 
-  .stats-pr-status span {
+  .stats-pr-status-mobile {
+    display: none;
+  }
+
+  .stats-pr-status-desktop,
+  .stats-pr-status-date {
     display: inline;
   }
 }

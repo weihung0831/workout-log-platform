@@ -18,7 +18,7 @@ export type BarItem = {
   active?: boolean;
   displayValue?: string;
   hiddenValue?: boolean;
-  variant?: "outline";
+  variant?: "outline" | "muted-outline";
 };
 
 export type MuscleGroup = {
@@ -33,6 +33,7 @@ export type PrRecord = {
   desktopDate: string;
   weight: string;
   status: string;
+  desktopStatus?: string;
   positive?: boolean;
   desktopOnly?: boolean;
 };
@@ -54,6 +55,7 @@ export type StatsDataset = {
     suffix: string;
     subtitle: string;
     average: string;
+    averageUnit?: string;
     aria: string;
     bars: BarItem[];
   };
@@ -62,6 +64,7 @@ export type StatsDataset = {
     centerValue: string;
     centerLabel: string;
     gradient: string;
+    variant?: "summary";
     groups: MuscleGroup[];
   };
   prRecords: PrRecord[];
@@ -174,6 +177,7 @@ const monthDataset: StatsDataset = {
     centerValue: "18次",
     centerLabel: "本月",
     gradient: "conic-gradient(#ff6b35 0 30%, #4ecdc4 30% 55%, #f08080 55% 75%, #45b7d1 75% 90%, #e5e5ea 90% 100%)",
+    variant: "summary",
     groups: [
       { label: "胸部", value: "30%", color: "#ff6b35" },
       { label: "背部", value: "25%", color: "#4ecdc4" },
@@ -255,6 +259,7 @@ export const statsDatasets: Record<PeriodKey, StatsDataset> = {
       centerValue: "4次",
       centerLabel: "本週",
       gradient: "conic-gradient(#ff6b35 0 40%, #4ecdc4 40% 65%, #f08080 65% 90%, #e5e5ea 90% 100%)",
+      variant: "summary",
       groups: [
         { label: "胸部", value: "40%", color: "#ff6b35" },
         { label: "背部", value: "25%", color: "#4ecdc4" },
@@ -278,10 +283,98 @@ export const statsDatasets: Record<PeriodKey, StatsDataset> = {
   },
   month: monthDataset,
   quarter: {
-    ...monthDataset,
-    rangeLabel: "2026年第2季",
+    rangeLabel: "2026 Q2",
     previousLabel: "上一季",
     nextLabel: "下一季",
+    metricAria: "本季統計摘要",
+    metrics: [
+      {
+        id: "sessions",
+        label: "本季訓練次數",
+        value: "21",
+        unit: "次",
+        trend: "↑ 40%",
+        icon: "dumbbell",
+        iconSrc: statsAssets.metricDumbbell,
+      },
+      {
+        id: "volume",
+        label: "本季總訓練量",
+        value: "28,400",
+        unit: "kg",
+        trend: "↑ 18%",
+        icon: "trophy",
+        iconSrc: statsAssets.metricTrophy,
+      },
+      {
+        id: "active-days",
+        label: "本季活躍天數",
+        value: "17",
+        unit: "天",
+        trend: "↑ 30%",
+        icon: "calendar",
+        iconSrc: statsAssets.metricCalendar,
+      },
+      {
+        id: "covered-months",
+        label: "涵蓋月份",
+        value: "3",
+        unit: "個月",
+        trend: "4月 · 5月 · 6月",
+        icon: "months",
+        iconSrc: statsAssets.metricMonths,
+      },
+    ],
+    duration: {
+      title: "各季訓練次數",
+      suffix: "（次）",
+      subtitle: "2026 年度四季比較",
+      average: "7",
+      averageUnit: "次/月均",
+      aria: "2026 年度四季訓練次數比較",
+      bars: [
+        { label: "Q1", value: 48 },
+        { label: "Q2", value: 21, active: true },
+        { label: "Q3", value: 16, variant: "muted-outline" },
+        { label: "Q4", value: 32, variant: "muted-outline" },
+      ],
+    },
+    muscle: {
+      title: "本季肌群分佈",
+      centerValue: "21次",
+      centerLabel: "本季",
+      gradient: "",
+      variant: "summary",
+      groups: [
+        { label: "胸部", value: "28%", color: "#ff6b35" },
+        { label: "背部", value: "24%", color: "#4ecdc4" },
+        { label: "腿部", value: "20%", color: "#f08080" },
+        { label: "肩部", value: "16%", color: "#45b7d1" },
+        { label: "其他", value: "12%", color: "#e5e5ea" },
+      ],
+    },
+    prRecords: [
+      {
+        title: "核心訓練",
+        date: "4月 1日",
+        desktopDate: "4/1 07:00",
+        weight: "100",
+        status: "↑ Q2 新 PR",
+        desktopStatus: "↑ +5kg",
+        positive: true,
+      },
+      { title: "胸部訓練", date: "3月 15日（Q1）", desktopDate: "3/15 07:30", weight: "120", status: "持平" },
+      { title: "背部訓練", date: "2月 28日", desktopDate: "2/28 10:00", weight: "140", status: "持平", desktopOnly: true },
+      {
+        title: "胸部・肩部訓練",
+        date: "4月 3日",
+        desktopDate: "4/3 08:45",
+        weight: "85",
+        status: "↑ +5kg",
+        positive: true,
+        desktopOnly: true,
+      },
+    ],
   },
   year: {
     ...monthDataset,

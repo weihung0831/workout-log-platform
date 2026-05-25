@@ -212,7 +212,7 @@ function TrainingDurationCard({ duration }: { duration: StatsDataset["duration"]
         </div>
         <p className="stats-average">
           <strong>{duration.average}</strong>
-          <span>分均</span>
+          <span>{duration.averageUnit ?? "分均"}</span>
         </p>
       </div>
       <div
@@ -222,6 +222,7 @@ function TrainingDurationCard({ duration }: { duration: StatsDataset["duration"]
       >
         {duration.bars.map((item) => {
           const isOutlined = item.variant === "outline";
+          const isMutedOutline = item.variant === "muted-outline";
           const barStyle = {
             "--bar-height": `${(item.value / maxChartValue) * 100}%`,
             backgroundColor: item.hiddenValue ? "#e5e5ea" : undefined,
@@ -237,6 +238,7 @@ function TrainingDurationCard({ duration }: { duration: StatsDataset["duration"]
                   "stats-bar",
                   item.active ? "stats-bar--active" : "",
                   isOutlined ? "stats-bar--outline" : "",
+                  isMutedOutline ? "stats-bar--muted-outline" : "",
                 ]
                   .filter(Boolean)
                   .join(" ")}
@@ -254,16 +256,28 @@ function TrainingDurationCard({ duration }: { duration: StatsDataset["duration"]
 }
 
 function MuscleDistributionCard({ muscle }: { muscle: StatsDataset["muscle"] }) {
+  const isSummary = muscle.variant === "summary";
+
   return (
-    <section className="stats-panel stats-muscle-card" aria-labelledby="stats-muscle-title">
+    <section
+      className={isSummary ? "stats-panel stats-muscle-card stats-muscle-card--summary" : "stats-panel stats-muscle-card"}
+      aria-labelledby="stats-muscle-title"
+    >
       <h2 id="stats-muscle-title">{muscle.title}</h2>
       <div className="stats-muscle-content">
-        <div className="stats-donut" aria-hidden style={{ background: muscle.gradient }}>
-          <div className="stats-donut-center">
+        {isSummary ? (
+          <div className="stats-muscle-total">
             <strong>{muscle.centerValue}</strong>
             <span>{muscle.centerLabel}</span>
           </div>
-        </div>
+        ) : (
+          <div className="stats-donut" aria-hidden style={{ background: muscle.gradient }}>
+            <div className="stats-donut-center">
+              <strong>{muscle.centerValue}</strong>
+              <span>{muscle.centerLabel}</span>
+            </div>
+          </div>
+        )}
         <dl className="stats-muscle-list">
           {muscle.groups.map((group) => (
             <div key={group.label}>
@@ -305,8 +319,9 @@ function PrRecordsCard({ records }: { records: PrRecord[] }) {
                 <span>kg</span>
               </p>
               <small className={record.positive ? "stats-pr-status stats-pr-status--positive" : "stats-pr-status"}>
-                {record.status}
-                <span> · {record.desktopDate}</span>
+                <span className="stats-pr-status-mobile">{record.status}</span>
+                <span className="stats-pr-status-desktop">{record.desktopStatus ?? record.status}</span>
+                <span className="stats-pr-status-date"> · {record.desktopDate}</span>
               </small>
             </div>
           </article>
