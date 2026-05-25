@@ -31,7 +31,7 @@ export function StatsPage() {
     <main className="stats-page">
       <section className="stats-shell" aria-label="FitLog 統計分析">
         <AppSidebar items={navItems} logoSrc={statsAssets.logo} user={sidebarUser} />
-        <MobileHeader isEmpty={isEmpty} statsData={statsData} />
+        <MobileHeader statsData={statsData} />
         <section className={isEmpty ? "stats-workspace stats-workspace--empty" : "stats-workspace"}>
           <DesktopHeader activePeriod={activePeriod} isEmpty={isEmpty} onPeriodChange={setActivePeriod} statsData={statsData} />
           <StatsContent activePeriod={activePeriod} onPeriodChange={setActivePeriod} statsData={statsData} />
@@ -42,17 +42,11 @@ export function StatsPage() {
   );
 }
 
-function MobileHeader({
-  isEmpty,
-  statsData,
-}: {
-  isEmpty: boolean;
-  statsData: StatsDataset;
-}) {
+function MobileHeader({ statsData }: { statsData: StatsDataset }) {
   return (
     <header className="stats-mobile-header">
       <h1>統計分析</h1>
-      {isEmpty ? null : <RangeSwitcher size="compact" statsData={statsData} />}
+      <RangeSwitcher size="compact" statsData={statsData} />
     </header>
   );
 }
@@ -72,23 +66,17 @@ function DesktopHeader({
     <header className={isEmpty ? "stats-desktop-header stats-desktop-header--empty" : "stats-desktop-header"}>
       <div className="stats-desktop-heading">
         <h1>統計分析</h1>
-        {isEmpty ? null : (
-          <div className="stats-tablet-range">
-            <RangeSwitcher statsData={statsData} />
-          </div>
-        )}
-      </div>
-      {isEmpty ? (
-        <span className="stats-avatar">陳</span>
-      ) : (
-        <div className="stats-desktop-tools">
-          <PeriodTabs activePeriod={activePeriod} onPeriodChange={onPeriodChange} />
-          <div className="stats-desktop-range">
-            <RangeSwitcher statsData={statsData} />
-          </div>
-          <span className="stats-avatar">陳</span>
+        <div className="stats-tablet-range">
+          <RangeSwitcher statsData={statsData} />
         </div>
-      )}
+      </div>
+      <div className="stats-desktop-tools">
+        <PeriodTabs activePeriod={activePeriod} onPeriodChange={onPeriodChange} />
+        <div className="stats-desktop-range">
+          <RangeSwitcher statsData={statsData} />
+        </div>
+        <span className="stats-avatar">陳</span>
+      </div>
     </header>
   );
 }

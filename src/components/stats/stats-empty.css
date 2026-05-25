@@ -4,10 +4,6 @@
   padding-top: 11px;
 }
 
-.stats-mobile-tabs--empty {
-  opacity: 0.35;
-}
-
 .stats-empty-state {
   display: grid;
   justify-items: center;
@@ -79,14 +75,10 @@
     min-height: 100svh;
   }
 
-  .stats-desktop-header--empty {
-    display: none;
-  }
-
   .stats-content--empty {
     width: 100%;
     max-width: none;
-    min-height: 100svh;
+    min-height: calc(100svh - 78px);
     place-items: center;
     padding: 0;
   }
@@ -134,10 +126,6 @@
 }
 
 @media (min-width: 1180px) {
-  .stats-desktop-header--empty {
-    display: grid;
-  }
-
   .stats-content--empty {
     min-height: calc(100svh - 60px);
   }
