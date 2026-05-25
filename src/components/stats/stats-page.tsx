@@ -65,10 +65,17 @@ function DesktopHeader({
 }) {
   return (
     <header className="stats-desktop-header">
-      <h1>統計分析</h1>
+      <div className="stats-desktop-heading">
+        <h1>統計分析</h1>
+        <div className="stats-tablet-range">
+          <RangeSwitcher statsData={statsData} />
+        </div>
+      </div>
       <div className="stats-desktop-tools">
         <PeriodTabs activePeriod={activePeriod} onPeriodChange={onPeriodChange} />
-        <RangeSwitcher statsData={statsData} />
+        <div className="stats-desktop-range">
+          <RangeSwitcher statsData={statsData} />
+        </div>
         <span className="stats-avatar">陳</span>
       </div>
     </header>

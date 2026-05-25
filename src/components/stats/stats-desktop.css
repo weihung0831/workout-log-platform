@@ -1,4 +1,31 @@
 @media (min-width: 1180px) {
+  .stats-desktop-header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--neutral-border);
+    height: 60px;
+    padding: 0 28px;
+  }
+
+  .stats-desktop-tools {
+    gap: 12px;
+  }
+
+  .stats-desktop-tools .stats-period-tabs {
+    width: 234px;
+  }
+
+  .stats-tablet-range {
+    display: none;
+  }
+
+  .stats-desktop-range {
+    display: block;
+  }
+
+  .stats-avatar {
+    display: grid;
+  }
+
   .stats-metric-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }

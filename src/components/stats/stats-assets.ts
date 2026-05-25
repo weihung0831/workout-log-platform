@@ -16,6 +16,6 @@ export const statsAssets = {
   metricDuration: "/assets/figma/stats/icons/Icon-1.svg",
   streakFlame: "/assets/figma/stats/icons/Icon-5.svg",
   prRecord: "/assets/figma/stats/icons/Icon-4.svg",
-  rangePrevious: "/assets/figma/stats/icons/Icon-25.svg",
-  rangeNext: "/assets/figma/stats/icons/Icon-26.svg",
+  rangePrevious: "/assets/figma/stats/icons/Icon-26.svg",
+  rangeNext: "/assets/figma/stats/icons/Icon-25.svg",
 };

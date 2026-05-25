@@ -185,13 +185,17 @@
   }
 
   .stats-desktop-header {
-    display: flex;
-    height: 60px;
+    display: grid;
+    height: 78px;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--neutral-border);
-    background: #ffffff;
-    padding: 0 28px;
+    padding: 0 32px;
+  }
+
+  .stats-desktop-heading {
+    display: grid;
+    justify-items: start;
+    gap: 4px;
   }
 
   .stats-desktop-header h1 {
@@ -204,15 +208,40 @@
   .stats-desktop-tools {
     display: flex;
     align-items: center;
-    gap: 12px;
   }
 
   .stats-desktop-tools .stats-period-tabs {
-    width: 234px;
+    width: 184px;
+  }
+
+  .stats-desktop-range {
+    display: none;
+  }
+
+  .stats-desktop-heading .stats-month-switcher {
+    gap: 6px;
+  }
+
+  .stats-desktop-heading .stats-month-switcher button {
+    width: 14px;
+    height: 18px;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .stats-desktop-heading .stats-month-switcher strong {
+    min-width: 78px;
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .stats-desktop-heading .stats-month-switcher img {
+    width: 12px;
+    height: 12px;
   }
 
   .stats-avatar {
-    display: grid;
+    display: none;
     width: 36px;
     height: 36px;
     place-items: center;
