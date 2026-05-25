@@ -108,14 +108,9 @@
   line-height: 17px;
 }
 
-.stats-month-switcher svg {
-  width: 16px;
-  height: 16px;
-  fill: none;
-  stroke: currentcolor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
+.stats-month-switcher img {
+  width: 14px;
+  height: 14px;
 }
 
 .stats-metric-grid,
@@ -197,6 +192,11 @@
 
 .stats-metric-card--trophy .stats-metric-value span {
   font-size: 11px;
+}
+
+.stats-metric-card--duration .stats-metric-value strong {
+  font-size: 24px;
+  line-height: 26px;
 }
 
 .stats-metric-label {
@@ -312,7 +312,7 @@
 .stats-bar-plot {
   display: grid;
   height: 136px;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--bar-count), minmax(0, 1fr));
   align-items: end;
   gap: 10px;
   margin-top: 16px;
@@ -354,6 +354,12 @@
   background: #ff6338;
 }
 
+.stats-bar--outline {
+  height: 8px !important;
+  border: 1px dashed #ff6338;
+  border-radius: 999px;
+  background: #f5f5f5;
+}
 .stats-bar-label {
   align-self: end;
   color: var(--neutral-t2);
@@ -362,30 +368,29 @@
 }
 
 .stats-muscle-card {
-  min-height: 174px;
+  min-height: 154px;
 }
 
 .stats-muscle-content {
   display: grid;
-  grid-template-columns: 100px minmax(0, 1fr);
+  grid-template-columns: 90px minmax(0, 1fr);
   align-items: center;
   gap: 16px;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .stats-donut {
   display: grid;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   place-items: center;
   border-radius: 50%;
-  background: conic-gradient(#ff6b35 0 30%, #4ecdc4 30% 55%, #f08080 55% 75%, #45b7d1 75% 90%, #e5e5ea 90% 100%);
 }
 
 .stats-donut-center {
   display: grid;
-  width: 60px;
-  height: 60px;
+  width: 54px;
+  height: 54px;
   place-items: center;
   align-content: center;
   border-radius: 50%;

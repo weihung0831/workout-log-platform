@@ -22,6 +22,14 @@
   border-bottom: 0;
 }
 
+.stats-content--week .stats-pr-card {
+  min-height: 176px;
+}
+
+.stats-content--week .stats-pr-record:nth-child(2) {
+  border-bottom: 0;
+}
+
 .stats-pr-main {
   display: flex;
   min-width: 0;
@@ -85,18 +93,27 @@
 }
 
 .stats-pr-result p span {
+  color: var(--brand-orange);
   font-size: 10px;
   font-weight: 700;
 }
 
-.stats-pr-result small {
+.stats-pr-status {
   display: block;
-  color: #34c759;
+  color: var(--neutral-t2);
   font-size: 10px;
   line-height: 12px;
 }
 
-.stats-pr-result small span {
+.stats-pr-status--positive {
+  color: #34c759;
+}
+
+.stats-pr-status span {
+  display: none;
+}
+
+.stats-pr-record--desktop-extra {
   display: none;
 }
 
@@ -107,10 +124,9 @@
   outline-offset: 3px;
 }
 
-.stats-metric-icon svg {
+.stats-metric-icon img {
   width: 18px;
   height: 18px;
-  fill: currentcolor;
 }
 
 @media (max-width: 360px) {
@@ -219,22 +235,30 @@
     gap: 14px;
   }
 
-  .stats-metric-card,
-  .stats-streak-card {
-    min-height: 122px;
-  }
-
   .stats-metric-card {
     padding: 14px 16px;
   }
 
-  .stats-metric-card-top {
+  .stats-content--month .stats-metric-card,
+  .stats-content--month .stats-streak-card,
+  .stats-content--quarter .stats-metric-card,
+  .stats-content--quarter .stats-streak-card,
+  .stats-content--year .stats-metric-card,
+  .stats-content--year .stats-streak-card {
+    min-height: 122px;
+  }
+
+  .stats-content--month .stats-metric-card-top,
+  .stats-content--quarter .stats-metric-card-top,
+  .stats-content--year .stats-metric-card-top {
     order: 1;
     justify-content: space-between;
     margin-top: 0;
   }
 
-  .stats-metric-icon {
+  .stats-content--month .stats-metric-icon,
+  .stats-content--quarter .stats-metric-icon,
+  .stats-content--year .stats-metric-icon {
     display: grid;
     width: 38px;
     height: 38px;
@@ -242,58 +266,73 @@
     border-radius: 12px;
   }
 
-  .stats-metric-card--dumbbell .stats-metric-icon {
+  .stats-content--month .stats-metric-card--dumbbell .stats-metric-icon,
+  .stats-content--month .stats-metric-card--duration .stats-metric-icon,
+  .stats-content--quarter .stats-metric-card--dumbbell .stats-metric-icon,
+  .stats-content--quarter .stats-metric-card--duration .stats-metric-icon,
+  .stats-content--year .stats-metric-card--dumbbell .stats-metric-icon,
+  .stats-content--year .stats-metric-card--duration .stats-metric-icon {
     background: var(--brand-orange-100);
-    color: var(--brand-orange);
   }
 
-  .stats-metric-card--trophy .stats-metric-icon {
+  .stats-content--month .stats-metric-card--trophy .stats-metric-icon,
+  .stats-content--quarter .stats-metric-card--trophy .stats-metric-icon,
+  .stats-content--year .stats-metric-card--trophy .stats-metric-icon {
     background: #e8f8f5;
-    color: #4ecdc4;
   }
 
-  .stats-metric-card--calendar .stats-metric-icon {
+  .stats-content--month .stats-metric-card--calendar .stats-metric-icon,
+  .stats-content--quarter .stats-metric-card--calendar .stats-metric-icon,
+  .stats-content--year .stats-metric-card--calendar .stats-metric-icon {
     background: #e8f0ff;
-    color: #45b7d1;
   }
 
-  .stats-metric-value {
+  .stats-content--month .stats-metric-value,
+  .stats-content--quarter .stats-metric-value,
+  .stats-content--year .stats-metric-value {
     order: 2;
     margin-top: 10px;
   }
 
-  .stats-metric-label {
+  .stats-content--month .stats-metric-label,
+  .stats-content--quarter .stats-metric-label,
+  .stats-content--year .stats-metric-label {
     order: 3;
     margin-top: 2px;
   }
 
-  .stats-metric-card--trophy .stats-metric-value strong {
-    font-size: 20px;
-    line-height: 22px;
-  }
-
-  .stats-streak-card {
+  .stats-content--month .stats-streak-card,
+  .stats-content--quarter .stats-streak-card,
+  .stats-content--year .stats-streak-card {
     justify-content: flex-start;
     gap: 4px;
     padding: 16px 20px;
   }
 
-  .stats-streak-title {
+  .stats-content--month .stats-streak-title,
+  .stats-content--quarter .stats-streak-title,
+  .stats-content--year .stats-streak-title {
     font-size: 11px;
     line-height: 14px;
   }
 
-  .stats-streak-title img {
+  .stats-content--month .stats-streak-title img,
+  .stats-content--quarter .stats-streak-title img,
+  .stats-content--year .stats-streak-title img {
     width: 16px;
     height: 16px;
   }
 
-  .stats-streak-card strong {
+  .stats-content--month .stats-streak-card strong,
+  .stats-content--quarter .stats-streak-card strong,
+  .stats-content--year .stats-streak-card strong {
     font-size: 28px;
     line-height: 33px;
   }
 
-  .stats-streak-card small {
+  .stats-content--month .stats-streak-card small,
+  .stats-content--quarter .stats-streak-card small,
+  .stats-content--year .stats-streak-card small {
     font-size: 12px;
     line-height: 17px;
   }
@@ -307,55 +346,20 @@
     padding: 20px;
   }
 
-  .stats-duration-card {
-    min-height: 323px;
-  }
-
   .stats-panel h2 {
     font-size: 15px;
     line-height: 21px;
   }
 
-  .stats-average strong {
-    font-size: 26px;
-    line-height: 30px;
-  }
-
   .stats-bar-plot {
-    height: 232px;
-    gap: 18px;
+    height: 136px;
+    gap: 12px;
     margin-top: 14px;
   }
 
   .stats-bar {
     width: min(100%, 60px);
     border-radius: 10px 10px 6px 6px;
-  }
-
-  .stats-muscle-card {
-    min-height: 323px;
-  }
-
-  .stats-muscle-content {
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: center;
-    gap: 16px;
-    margin-top: 12px;
-  }
-
-  .stats-donut {
-    width: 120px;
-    height: 120px;
-  }
-
-  .stats-donut-center {
-    width: 72px;
-    height: 72px;
-  }
-
-  .stats-donut-center strong {
-    font-size: 14px;
-    line-height: 18px;
   }
 
   .stats-muscle-list {
