@@ -1,0 +1,285 @@
+@media (max-width: 360px) {
+  .weight-mobile-header {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .weight-content {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .weight-summary {
+    margin-right: -12px;
+    margin-left: -12px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .weight-add-button--compact {
+    min-width: 66px;
+    padding: 0 11px;
+  }
+
+  .weight-chart-x-labels {
+    font-size: 8px;
+  }
+
+  .weight-history-record {
+    gap: 9px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .weight-history-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .weight-history-value strong {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 768px) {
+  .weight-page {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .weight-shell {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .weight-mobile-header,
+  .weight-tabbar {
+    display: none;
+  }
+
+  .weight-workspace {
+    min-width: 0;
+  }
+
+  .weight-desktop-header {
+    display: flex;
+    height: 56px;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--neutral-border);
+    background: #ffffff;
+    padding: 0 20px;
+  }
+
+  .weight-desktop-title {
+    min-width: 0;
+    gap: 12px;
+  }
+
+  .weight-desktop-title h1 {
+    overflow: hidden;
+    color: var(--neutral-t1);
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 24px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .weight-content {
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .weight-summary {
+    gap: 0;
+    border-bottom: 0;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+  }
+
+  .weight-summary-item {
+    min-height: 94px;
+    align-content: center;
+    border-left: 0;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  }
+
+  .weight-summary-item + .weight-summary-item {
+    border-left: 0;
+  }
+
+  .weight-summary-value strong {
+    font-size: 28px;
+    line-height: 29px;
+  }
+
+  .weight-main-grid {
+    gap: 16px;
+  }
+
+  .weight-trend-card {
+    min-height: 370px;
+    gap: 12px;
+    padding: 20px;
+  }
+
+  .weight-card h2 {
+    font-size: 14px;
+  }
+
+  .weight-range-tabs {
+    width: 153px;
+    height: 32px;
+    grid-template-columns: 47px 47px minmax(0, 1fr);
+  }
+
+  .weight-range-tab {
+    font-size: 12px;
+  }
+
+  .weight-chart {
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .weight-chart-body {
+    --weight-chart-height: 210px;
+
+    height: var(--weight-chart-height);
+    grid-template-columns: 18px minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .weight-chart-y-labels,
+  .weight-chart-x-labels {
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  .weight-chart-point {
+    width: 7px;
+    height: 8px;
+  }
+
+  .weight-chart-point--current {
+    width: 13px;
+    height: 14px;
+  }
+
+  .weight-history-card h2 {
+    height: 52px;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 0 20px;
+  }
+
+  .weight-history-record {
+    min-height: 69px;
+    padding: 14px 20px;
+  }
+
+  .weight-history-record > * {
+    transform: translateY(3px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1179px) {
+  .weight-summary {
+    gap: 0;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  }
+
+  .weight-summary-item {
+    position: relative;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .weight-summary-item + .weight-summary-item {
+    border-left: 0;
+  }
+
+  .weight-summary-item + .weight-summary-item::before {
+    position: absolute;
+    top: 16px;
+    bottom: 16px;
+    left: 0;
+    width: 1px;
+    background: var(--neutral-border);
+    content: "";
+  }
+
+  .weight-history-record {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .weight-history-icon {
+    display: none;
+  }
+}
+
+@media (min-width: 1180px) {
+  .weight-desktop-header {
+    height: 60px;
+    padding: 0 28px;
+  }
+
+  .weight-desktop-title h1 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .weight-add-button {
+    min-width: 140px;
+    height: 36px;
+  }
+
+  .weight-content {
+    gap: 16px;
+    padding: 24px;
+  }
+
+  .weight-summary {
+    gap: 16px;
+  }
+
+  .weight-summary-item {
+    min-height: 97px;
+  }
+
+  .weight-summary-value strong {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .weight-summary-value span {
+    font-size: 13px;
+  }
+
+  .weight-summary-item h2 {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .weight-main-grid {
+    grid-template-columns: minmax(0, 2fr) minmax(290px, 1fr);
+  }
+
+  .weight-card h2 {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .weight-trend-card {
+    min-height: 392px;
+  }
+}

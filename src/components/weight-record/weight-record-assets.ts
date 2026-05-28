@@ -1,0 +1,18 @@
+export const weightRecordAssets = {
+  logo: "/assets/figma/profile/images/Image (FitLog).png",
+  add: "/assets/figma/profile/icons/Icon-13.svg",
+  back: "/assets/figma/profile/icons/Icon-14.svg",
+  backSmall: "/assets/figma/profile/icons/Icon-10.svg",
+  historyActive: "/assets/figma/profile/icons/Icon-12.svg",
+  historyMuted: "/assets/figma/profile/icons/Icon-11.svg",
+  navHome: "/assets/figma/profile/icons/Icon-25.svg",
+  navHomeSmall: "/assets/figma/profile/icons/Icon-20.svg",
+  navRecord: "/assets/figma/profile/icons/Icon-24.svg",
+  navRecordSmall: "/assets/figma/profile/icons/Icon-19.svg",
+  navJournal: "/assets/figma/profile/icons/Icon-23.svg",
+  navJournalSmall: "/assets/figma/profile/icons/Icon-17.svg",
+  navStats: "/assets/figma/profile/icons/Icon-34.svg",
+  navStatsSmall: "/assets/figma/profile/icons/Icon-16.svg",
+  navProfileActive: "/assets/figma/profile/icons/Icon-22.svg",
+  navProfileActiveSmall: "/assets/figma/profile/icons/Icon-15.svg",
+};

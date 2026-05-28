@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, type CSSProperties, type ReactNode } from "react";
 
 import { AppSidebar, type AppSidebarItem } from "@/components/navigation/app-sidebar";
@@ -140,7 +141,7 @@ function BodyDataCard() {
           <BodyMetric key={metric.label} metric={metric} />
         ))}
       </dl>
-      <button className="profile-row profile-row--button" type="button">
+      <Link className="profile-row profile-row--button" href="/profile/weight">
         <span className="profile-icon-badge profile-icon-badge--orange" aria-hidden>
           <Image src={scaleIconSrc} alt="" width={18} height={18} />
         </span>
@@ -149,7 +150,7 @@ function BodyDataCard() {
           <small>{weightRecord.caption}</small>
         </span>
         <AppIcon name="chevron" size={16} />
-      </button>
+      </Link>
     </section>
   );
 }

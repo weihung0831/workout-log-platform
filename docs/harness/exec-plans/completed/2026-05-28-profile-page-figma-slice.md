@@ -172,3 +172,18 @@
 
 - Figma 短效 asset URL 不應直接進入程式碼；若 asset 尚未落地，使用 inline SVG 或 CSS 先保證頁面可驗證。
 - 全域 CSS 匯入順序會影響 responsive 規則；同一流程的 base CSS 必須在 responsive CSS 前且只匯入一次。
+
+## 追補修正：體重折線圖
+
+日期：2026-05-28
+
+- 修正 `/profile/weight` 折線圖跑版：SVG 保留線條與面積，資料點改以固定像素 HTML 元素定位，避免 `preserveAspectRatio="none"` 把圓點水平拉成橢圓。
+- 將 `weight-record` CSS 改由 `src/app/layout.tsx` 直接 import，避免全域 CSS `@import` 在 media rules 後漏載。
+- 修正 `/profile` 的「體重紀錄」列，從純按鈕改成連到 `/profile/weight` 的路由連結。
+- 加高體重趨勢圖 plot：手機 128px，桌機 210px，寬版卡片同步加高。
+- 依 Figma node `281:1319` 修正折線樣式：橘線 2.34px、面積 6% opacity、青綠 dashed baseline、資料點座標與尺寸改用 Figma vector 設計值。
+- 修正「紀錄歷史」卡片與趨勢卡片等高；列表四列平均分配剩餘高度，避免只在底部產生空白。
+- 修正「紀錄歷史」標題垂直位置，改用 flex 垂直置中，不再靠近卡片上緣。
+- 平板版隱藏「紀錄歷史」每列左側 icon；手機與桌機維持 icon。
+- 修正平板摘要卡分隔線：改為 62px 高的內縮短線，不再使用滿高欄位 border。
+- 已驗證 `npm run harness:check`、`npm run lint`、`npm run build` 通過；另以 production server + Headless Chrome/CDP 驗證 402px 與 1280px 圖表尺寸、圓點比例與無水平溢出。
