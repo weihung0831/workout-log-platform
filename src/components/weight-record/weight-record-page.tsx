@@ -35,14 +35,15 @@ const figmaTrendCoordinates = [
 
 export function WeightRecordPage() {
   const [activeRange, setActiveRange] = useState<WeightRangeKey>("month");
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <main className="weight-page">
       <section className="weight-shell" aria-label="FitLog 體重紀錄">
         <AppSidebar items={weightNavItems} logoSrc={weightRecordAssets.logo} user={sidebarUser} />
-        <MobileHeader />
+        <MobileHeader onAddWeight={() => setModalOpen(true)} />
         <section className="weight-workspace">
-          <DesktopHeader />
+          <DesktopHeader onAddWeight={() => setModalOpen(true)} />
           <WeightRecordContent
             activeRange={activeRange}
             data={weightRecordDataset}
@@ -50,24 +51,25 @@ export function WeightRecordPage() {
           />
         </section>
         <MobileTabBar />
+        {modalOpen ? <AddWeightModal onClose={() => setModalOpen(false)} /> : null}
       </section>
     </main>
   );
 }
 
-function MobileHeader() {
+function MobileHeader({ onAddWeight }: { onAddWeight: () => void }) {
   return (
     <header className="weight-mobile-header">
       <button aria-label="返回我的頁面" className="weight-icon-button weight-icon-button--large" type="button">
         <Image aria-hidden src={weightRecordAssets.back} alt="" width={20} height={20} />
       </button>
       <h1>體重紀錄</h1>
-      <AddWeightButton label="新增" variant="compact" />
+      <AddWeightButton label="新增" variant="compact" onClick={onAddWeight} />
     </header>
   );
 }
 
-function DesktopHeader() {
+function DesktopHeader({ onAddWeight }: { onAddWeight: () => void }) {
   return (
     <header className="weight-desktop-header">
       <div className="weight-desktop-title">
@@ -76,20 +78,22 @@ function DesktopHeader() {
         </button>
         <h1>體重紀錄</h1>
       </div>
-      <AddWeightButton label="新增體重紀錄" />
+      <AddWeightButton label="新增體重紀錄" onClick={onAddWeight} />
     </header>
   );
 }
 
 function AddWeightButton({
   label,
+  onClick,
   variant = "default",
 }: {
   label: string;
+  onClick: () => void;
   variant?: "default" | "compact";
 }) {
   return (
-    <button className={`weight-add-button weight-add-button--${variant}`} type="button">
+    <button className={`weight-add-button weight-add-button--${variant}`} onClick={onClick} type="button">
       <Image aria-hidden src={weightRecordAssets.add} alt="" width={13} height={13} />
       <span>{label}</span>
     </button>
@@ -283,6 +287,75 @@ function HistoryRecord({ record }: { record: WeightHistoryRecord }) {
         </span>
       </div>
     </article>
+  );
+}
+
+function AddWeightModal({ onClose }: { onClose: () => void }) {
+  const [weight, setWeight] = useState("75.2");
+  const [recordDate, setRecordDate] = useState("2026年4月7日");
+  const [recordTime, setRecordTime] = useState("08:00");
+
+  return (
+    <div
+      className="weight-modal-backdrop"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) {
+          onClose();
+        }
+      }}
+    >
+      <form
+        aria-labelledby="weight-modal-title"
+        aria-modal="true"
+        className="weight-modal"
+        onSubmit={(event) => {
+          event.preventDefault();
+          onClose();
+        }}
+        role="dialog"
+      >
+        <span className="weight-modal-handle" aria-hidden />
+        <header className="weight-modal-header">
+          <div>
+            <h2 id="weight-modal-title">新增體重紀錄</h2>
+            <p>今天 · 4月7日</p>
+          </div>
+          <button aria-label="關閉新增體重紀錄" className="weight-modal-close" onClick={onClose} type="button">
+            ×
+          </button>
+        </header>
+        <section className="weight-modal-scale" aria-labelledby="weight-modal-scale-label">
+          <label className="weight-modal-scale-label" htmlFor="weight-modal-value" id="weight-modal-scale-label">
+            體重 (kg)
+          </label>
+          <div className="weight-modal-number-row">
+            <input
+              className="weight-modal-number-input"
+              id="weight-modal-value"
+              inputMode="decimal"
+              onChange={(event) => setWeight(event.target.value)}
+              type="text"
+              value={weight}
+            />
+            <span>kg</span>
+          </div>
+          <p>上次：75.2 kg（今天 07:30）</p>
+        </section>
+        <div className="weight-modal-fields">
+          <label className="weight-modal-field">
+            <span>記錄日期</span>
+            <input onChange={(event) => setRecordDate(event.target.value)} type="text" value={recordDate} />
+          </label>
+          <label className="weight-modal-field">
+            <span>記錄時間</span>
+            <input onChange={(event) => setRecordTime(event.target.value)} type="text" value={recordTime} />
+          </label>
+        </div>
+        <button className="weight-modal-save" type="submit">
+          儲存體重紀錄
+        </button>
+      </form>
+    </div>
   );
 }
 

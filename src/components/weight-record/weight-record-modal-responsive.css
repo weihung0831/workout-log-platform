@@ -1,0 +1,128 @@
+@media (min-width: 768px) {
+  .weight-modal-backdrop {
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .weight-modal {
+    width: 360px;
+    height: 423.5px;
+    border-radius: 24px;
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.3);
+    padding: 28px;
+  }
+
+  .weight-modal-handle {
+    display: none;
+  }
+
+  .weight-modal-header {
+    height: 50.5px;
+  }
+
+  .weight-modal-close {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    border: 0;
+    border-radius: 14px;
+    background: #f5f5f5;
+    color: var(--neutral-t2);
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .weight-modal-scale {
+    height: 140px;
+  }
+
+  .weight-modal-number-row {
+    height: 50.5px;
+  }
+
+  .weight-modal-number-input {
+    width: 110px;
+    height: 50.5px;
+    font-size: 34px;
+    line-height: 41px;
+  }
+
+  .weight-modal-number-row span {
+    font-size: 16px;
+  }
+
+  .weight-modal-fields {
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .weight-modal-save {
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 1180px) {
+  .weight-modal {
+    width: 440px;
+    height: 468px;
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.35);
+    padding: 32px;
+  }
+
+  .weight-modal-header {
+    height: 54.5px;
+  }
+
+  .weight-modal-header h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .weight-modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .weight-modal-scale {
+    height: 160.5px;
+    gap: 10px;
+    margin-top: 24px;
+    padding: 24px;
+  }
+
+  .weight-modal-number-row {
+    height: 57.5px;
+    gap: 10px;
+  }
+
+  .weight-modal-number-input {
+    width: 130px;
+    height: 57.5px;
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  .weight-modal-number-row span {
+    font-size: 20px;
+  }
+
+  .weight-modal-scale p {
+    font-size: 12px;
+    line-height: 16.5px;
+  }
+
+  .weight-modal-fields {
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .weight-modal-save {
+    margin-top: 24px;
+  }
+}

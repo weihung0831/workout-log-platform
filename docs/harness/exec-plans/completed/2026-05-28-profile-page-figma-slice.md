@@ -12,7 +12,7 @@
 
 ## 最後更新
 
-2026-05-28
+2026-05-29
 
 ## 目標
 
@@ -161,7 +161,7 @@
 
 ### 未解問題
 
-- 新增體重紀錄按鈕目前只有視覺狀態，尚未開啟 modal 或寫入資料。
+- 新增體重紀錄 modal 已可從新增按鈕開啟並關閉，但尚未寫入資料或串接後端。
 - 既有 `public/assets/figma/*` 圖片資產仍未出現在 `public/`，本頁已避免依賴那些缺失資產。
 
 ### 下一個建議切片
@@ -187,3 +187,14 @@
 - 平板版隱藏「紀錄歷史」每列左側 icon；手機與桌機維持 icon。
 - 修正平板摘要卡分隔線：改為 62px 高的內縮短線，不再使用滿高欄位 border。
 - 已驗證 `npm run harness:check`、`npm run lint`、`npm run build` 通過；另以 production server + Headless Chrome/CDP 驗證 402px 與 1280px 圖表尺寸、圓點比例與無水平溢出。
+
+## 追補修正：新增體重紀錄 Modal
+
+日期：2026-05-29
+
+- 依 Figma nodes `281:1795`、`281:1658`、`281:1551` 實作新增體重紀錄 modal：桌機 440x468 置中、平板 360x423.5 置中、手機 402x443 bottom sheet。
+- 將 `/profile/weight` 的手機與桌機「新增」按鈕接上 modal 開啟狀態；儲存按鈕、桌機/平板關閉按鈕與手機儲存流程可關閉 modal。
+- 新增 `weight-record-modal.css` 與 `weight-record-modal-responsive.css`，並由 `src/app/layout.tsx` 匯入，避免擠壓既有 `weight-record.css` 行數上限。
+- 互動仍維持本地視覺流程：體重、日期、時間欄位可編輯，但送出只關閉 modal，尚未寫回列表或串接 API。
+- 已驗證 `npm run harness:check`、`npm run lint`、`npm run build` 通過。
+- Headless Chrome/CDP 驗證 `/profile/weight`：402x874、768x1024、1280x720 皆可點擊新增、顯示正確 modal 尺寸與位置、無水平溢出、無 app runtime error，modal 可關閉。
