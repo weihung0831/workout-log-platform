@@ -18,6 +18,7 @@
 - `src/styles/theme.css`：全域 design tokens 與 Tailwind `@theme` 映射。
 - `src/styles/base.css`：最小 reset、body 字體與跨頁基礎背景規則。
 - `src/components/*/*.css`：與該流程元件同層的 global class 樣式；目前用於 sign-in、sign-up 與 email verification。
+- 流程樣式若拆成 base / responsive 檔，`globals.css` 必須先匯入 base，再匯入 responsive，且同一 base 檔只匯入一次，避免 media query 被後續 base 規則覆蓋。
 - `next.config.ts`：Next.js 設定。
 - `eslint.config.mjs`：Next.js ESLint 設定。
 

@@ -36,7 +36,7 @@ const navItems = [
   },
   {
     label: "我的",
-    href: "#",
+    href: "/profile",
     active: false,
     icon: homeAssets.navProfile,
     sideIcon: homeAssets.navProfileSmall,

@@ -11,3 +11,5 @@
 @import "../components/home/home-empty.css";
 @import "../components/home/home-paused.css";
 @import "../components/home/home-responsive.css";
+@import "../components/profile/profile.css";
+@import "../components/profile/profile-responsive.css";

@@ -121,7 +121,7 @@ export const navItems = [
   },
   {
     label: "我的",
-    href: "#",
+    href: "/profile",
     active: false,
     icon: statsAssets.navProfile,
     sideIcon: statsAssets.navProfileSmall,

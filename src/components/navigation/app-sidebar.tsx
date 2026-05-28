@@ -1,10 +1,12 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 
 export type AppSidebarItem = {
   label: string;
   href: string;
   active: boolean;
-  sideIcon: string;
+  sideIcon?: string;
+  sideIconElement?: ReactNode;
 };
 
 type AppSidebarUser = {
@@ -14,16 +16,30 @@ type AppSidebarUser = {
 };
 
 type AppSidebarProps = {
-  logoSrc: string;
+  logoSrc?: string;
+  logo?: ReactNode;
   items: AppSidebarItem[];
   user: AppSidebarUser;
 };
 
-export function AppSidebar({ items, logoSrc, user }: AppSidebarProps) {
+export function AppSidebar({ items, logo, logoSrc, user }: AppSidebarProps) {
   return (
     <aside className="home-sidebar" aria-label="主要導覽">
       <div className="home-sidebar-logo">
-        <Image className="home-sidebar-logo-image" src={logoSrc} alt="FitLog" width={371} height={112} priority />
+        {logo ?? (
+          logoSrc ? (
+            <Image
+              className="home-sidebar-logo-image"
+              src={logoSrc}
+              alt="FitLog"
+              width={371}
+              height={112}
+              priority
+            />
+          ) : (
+            <span>FitLog</span>
+          )
+        )}
       </div>
       <nav className="home-sidebar-nav" aria-label="主要導覽">
         {items.map((item) => (
@@ -33,7 +49,8 @@ export function AppSidebar({ items, logoSrc, user }: AppSidebarProps) {
             href={item.href}
             key={item.label}
           >
-            <Image aria-hidden src={item.sideIcon} alt="" width={20} height={20} />
+            {item.sideIconElement ??
+              (item.sideIcon ? <Image aria-hidden src={item.sideIcon} alt="" width={20} height={20} /> : null)}
             <span>{item.label}</span>
           </a>
         ))}
